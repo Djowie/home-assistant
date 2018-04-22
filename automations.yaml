@@ -1,0 +1,348 @@
+#system
+  - alias: Update notifications
+    trigger:
+      - platform: state
+        entity_id: updater.updater
+    action:
+      service: notify.jeeves
+      data_template: 
+        title: 'New Home Assistant Release'
+        message: "Home Assistant  {{ states.updater.updater.state }}  is now available."
+      
+# Turns on lights 1 hour before sunset if people are home
+# and if people get home between 16:00-23:00
+  - alias: 'Rule 1: Light on in the evening'
+    trigger:
+      # Prefix the first line of each trigger configuration
+      # with a '-' to enter multiple
+      - platform: sun
+        event: sunset
+        offset: '-00:00:00'
+      # - platform: state
+      #   entity_id: group.all_devices
+      #   to: 'home'
+    action:
+      # - service: light.turn_on
+      #   data:
+      #     entity_id: group.dining, light.hue_lightstrip_plus__tv
+      #     brightness: 120
+      #     transition: 1800
+      # - service: notify.Jeeves
+      #   data:
+      #     title: '*Sunset*'
+      #     message: "Excuse me sir, sorry to interrupt but the sun will set in 30 minutes. I will start putting on some lights to prepare your arrival."
+      # - service: tts.google_say
+      - service: script.sonos_say
+        data:
+          sonos_entity: media_player.living_room
+          volume: 0.2
+          message: "The sun has set!"
+          delay: 00:00:05
+
+
+# Turns on lights when we get up throughout the week
+  - alias: 'Rule 2: Light on in the morning'
+    trigger:
+        platform: state
+        entity_id: sensor.hue_motion__stairs_motion_bottom
+        to: 'on'
+    condition:
+     condition: and 
+     conditions:
+      - condition: state
+        entity_id: group.dining
+        state: 'off'
+      - condition: time
+        after: '02:00'
+        before: '08:00'
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+    action: 
+      - service: light.turn_on
+        data:
+         entity_id: group.dining, light.ikea_white__pantry
+         brightness_pct: 15
+      - service: light.turn_on
+        data:
+          entity_id: group.dining
+          brightness_pct: 75
+          transition: 1600
+      - service: light.turn_on
+        data:
+          entity_id: light.ikea_white__pantry
+          brightness_pct: 50
+          transition: 1600
+
+#Turn off everything when we are not home 
+  #lights
+  #climate
+  #notify
+  - alias: 'Rule 3 - Away Mode'
+    trigger:
+      platform: state
+      entity_id: group.joey_tracker, group.marit_tracker
+      to: 'not_home'
+    action:
+      - service: light.turn_off
+        entity_id: group.all_lights
+      - service: climate.set_away_mode
+        data:
+          entity_id: climate.living_room
+          away_mode: 'on'
+      - delay: 00:01:30
+      - service: notify.Jeeves
+        data:
+         title: '*Away Mode*'
+         message: "Hi Sir, Away mode has just been succesfully triggered. The lights have successfully been turned off, hope to see you soon. Also the NEST away mode has been set to {% if is_state('states.climate.living_room.state.away_mode', 'on') %}*on*. \n{% else %}*off*.\n{% endif %}"
+
+#Turn off all the lights when we need to go to bed during the week
+  #lights
+  - alias: 'Rule 4: Lights off in the evening'
+    trigger:
+      - platform: time
+        at: '22:30'
+    action: 
+      service: light.turn_off
+      entity_id: group.all_lights
+      data:
+       transition: 3600
+
+#Notify me when Marit is home after work, don't run this during the night because of WiFi presence
+  - alias: "Rule 5: Let me know Marit is home, and turn on the light if it isn't already."
+    trigger:
+        platform: state
+        entity_id: device_tracker.mqttmarit_maritiphone
+        to: 'home'
+    condition:
+      condition: and 
+      conditions:
+        - condition: time
+          after: '09:00'
+          before: '23:59'
+        - condition: time
+          after: '08:00'
+          before: '01:00'
+        - condition: numeric_state
+          entity_id: sensor.hue_motion__stairs_motion_bottom
+          value_template: '{{ state.attributes.lux }}'
+          below: 10
+        - condition: numeric_state
+          entity_id: sensor.illumination_7811dcb0693d
+          below: 100
+    action: 
+      - service: light.turn_on
+        data:
+          entity_id: group.dining, light.ikea__livingroom, light.hue_lightstrip_plus__tv
+      - service: notify.Jeeves
+        data:
+         title: '*Marit has arrived*'
+         message: "Hi Sir, Just wanted to inform you that Marit has just arrived home. Since it is dark in the house, we have turned on the light on her arrival, I'll take care of her."
+      # - service: tts.google_say
+      #   data:
+      #     message: 'Welcome home, Marit'
+
+#Get me the status of all the lights via Telegram
+  - alias: 'Get the status of all the lights.'
+    hide_entity: true
+    trigger:
+      platform: event
+      event_type: telegram_command
+      event_data:
+        command: '/lights'
+    action:
+      - service: notify.Jeeves
+        data:
+          message: "Hi Sir, 
+          \n  
+          The current status of your lights are: 
+          \n 
+          *Livingroom:* {{ states.light.ikea__livingroom.state }}
+          \n 
+          *Dining:* Left: {{ states.light.ikea_color__dining_l.state }}, Right: {{ states.light.ikea_color__dining_r.state }}
+          \n 
+          *Pantry:* {{ states.light.ikea_white__pantry.state }} 
+          \n 
+          *Hallway:* {{ states.light.hall.state }}
+          \n 
+          *Clothing:* {{ states.light.hue_white__kledingkamer.state }}
+          \n 
+          *First floor hall:* {{ states.light.hallway_1st_floor.state	}}
+          \n 
+          *Kitchen:* Left: {{ states.light.dimmable_light__ikea_l.state }}, Right: {{ states.light.dimmable_light__ikea_r.state }}
+          \n 
+          *TV wall:* {{ states.light.hue_lightstrip_plus__tv.state	}}"
+  
+  #turn off pantry light when door is closed.
+  - alias: 'Turn off pantry light when door is closed.'
+    hide_entity: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001b78233
+      to: 'off'
+    action: 
+      service: light.turn_off
+      entity_id: light.hue_white_lamp__pantry
+
+  #turn on pantry light when door is open.
+  - alias: 'Turn on pantry light when door is open.'
+    hide_entity: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001b78233
+      to: 'on'
+    action: 
+      service: light.turn_on
+      entity_id: light.hue_white_lamp__pantry
+
+ #turn off kledingkamer light when door is closed.
+  - alias: 'Turn off kledingkamer light when door is closed.'
+    hide_entity: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001bf47ec
+      to: 'off'
+    action: 
+      service: light.turn_off
+      entity_id: light.hue_white__kledingkamer
+
+  #turn on kledingkamer light when door is closed.
+  - alias: 'Turn on kledingkamer light when door is closed.'
+    hide_entity: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001bf47ec
+      to: 'on'
+    action: 
+      service: light.turn_on
+      entity_id: light.hue_white__kledingkamer
+
+#turn off office light when door is closed.
+  - alias: 'Turn off office light when door is closed.'
+    hide_entity: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.door_window_sensor_158d000201132e
+      to: 'off'
+    action: 
+      service: light.turn_off
+      entity_id: light.color_temperature_light_1
+
+  #turn on office light when door is closed.
+  - alias: 'Turn on office light when door is closed.'
+    hide_entity: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.door_window_sensor_158d000201132e
+      to: 'on'
+    action: 
+      service: light.turn_on
+      entity_id: light.color_temperature_light_1
+
+  #Trigger Alarm lights throughout the house
+  - alias: 'Alarm automation.'
+    hide_entity: false
+    trigger:
+      platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001b86233
+      to: 'on'
+    condition: 
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: input_boolean.alarm_armed
+          state: 'on'
+    action: 
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.alarm_triggered
+      - service: light.turn_on
+        data:
+          entity_id: group.all.lights
+          color_name: red
+          brightness: 255
+      - delay:
+          # supports seconds, milliseconds, minutes, hours
+          milliseconds: 600
+      - service: script.turn_on
+        data:
+          entity_id: script.flash_gateway2
+      - service: notify.Jeeves
+        data:
+          message: "Your alarm has been triggered, please call the authorities"
+
+#Get me the status of the current climate via Telegram
+  - alias: 'Get the status of the current climate.'
+    hide_entity: true
+    trigger:
+      platform: event
+      event_type: telegram_command
+      event_data:
+        command: '/climate'
+    action:
+      - service: notify.Jeeves
+        data_template:
+          message: "Hi Sir, 
+          \n  
+          The current temperature in your living room is: 
+          \n 
+          *Kitchenlight:* {{ states.climate.living_room.attributes.current_temperature }} 
+          \n
+          *Hall:* {{ states.sensor.hue_motion__stairs_motion_bottom.attributes.temperature }}
+          \n \n
+          The NEST has been set to *{{ states.climate.living_room.attributes.operation_mode }}* with a target temperature of *{{  states.climate.living_room.attributes.temperature }}*, the away mode has been set to
+          *{{ states.climate.living_room.attributes.away_mode }}*
+          "
+
+# Welcome people - group.joey_tracker	
+  - alias: 'Welcome Joey home'
+    trigger:
+      - platform: state
+        entity_id: group.joey_tracker
+        to: 'home'
+    condition:
+      condition: and 
+      conditions:
+        - condition: time
+          after: '09:00'
+          before: '23:59'
+    action:
+      - service: notify.Jeeves
+        data:
+          title: '*Joey is home*'
+          message: "You've arrived home."
+      # - service: tts.google_say
+      - service: script.sonos_say
+        data:
+          sonos_entity: media_player.living_room
+          volume: 0.2
+          message: "Welcome home, Joey!!"
+          delay: 00:00:05
+
+# Welcome people - group.marit_trcker	
+  - alias: 'Welcome Marit home'
+    trigger:
+      - platform: state
+        entity_id: group.marit_tracker
+        to: 'home'
+    condition:
+      condition: and 
+      conditions:
+        - condition: time
+          after: '09:00'
+          before: '23:59'
+    action:
+      - service: notify.Jeeves
+        data:
+          title: '*Marit is home*'
+          message: "Marit arrived home."
+      # - service: tts.google_say
+      - service: script.sonos_say
+        data:
+          sonos_entity: media_player.living_room
+          volume: 0.2
+          message: "Welcome home, Marit!!"
+          delay: 00:00:05

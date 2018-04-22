@@ -1,0 +1,124 @@
+climate.living_room:
+  name:
+  platform: nest
+  unique_id: GAWrgoTLxrJzompUhHF2edlM6HT34kcW
+light.hall:
+  name:
+  platform: hue
+  unique_id: 00:17:88:01:02:b3:6d:23-0b
+light.hue_white_lamp__pantry:
+  name:
+  platform: hue
+  unique_id: 00:17:88:01:02:6c:db:51-0b
+light.ikea_color__dining_l:
+  name:
+  platform: hue
+  unique_id: 00:0b:57:ff:fe:ae:51:65-01
+light.hue_lightstrip_plus__tv:
+  name:
+  platform: hue
+  unique_id: 00:17:88:01:01:20:dc:5e-0b
+light.hallway_1st_floor:
+  name:
+  platform: hue
+  unique_id: 00:17:88:01:02:6c:45:58-0b
+light.ikea__livingroom:
+  name:
+  platform: hue
+  unique_id: 00:0b:57:ff:fe:ae:cd:78-01
+light.ikea_white__pantry:
+  name: IKEA Light - Laundry Room
+  platform: hue
+  unique_id: 00:0b:57:ff:fe:d2:ec:15-01
+light.hue_white__kledingkamer:
+  name:
+  platform: hue
+  unique_id: 00:17:88:01:02:6c:2e:37-0b
+light.ikea_color__dining_r:
+  name:
+  platform: hue
+  unique_id: 00:0b:57:ff:fe:ae:45:db-01
+light.dimmable_light__ikea_r:
+  name:
+  platform: hue
+  unique_id: 00:0b:57:ff:fe:a7:15:ab-01
+light.dimmable_light__ikea_l:
+  name:
+  platform: hue
+  unique_id: 00:0b:57:ff:fe:be:30:ae-01
+media_player.guest_room:
+  name:
+  platform: sonos
+  unique_id: RINCON_5CAAFD9AD5B201400
+media_player.master_bedroom:
+  name:
+  platform: sonos
+  unique_id: RINCON_5CAAFD96E20201400
+media_player.living_room:
+  name:
+  platform: sonos
+  unique_id: RINCON_5CAAFD1B984A01400
+light.color_temperature_light_1:
+  name:
+  platform: hue
+  unique_id: 00:0b:57:ff:fe:da:92:23-01
+sensor.marit_boonks_iphone_battery_level:
+  name:
+  platform: ios
+  unique_id: level_marit_boonks_iphone
+sensor.joey_bakxs_iphone_battery_state:
+  name:
+  platform: ios
+  unique_id: state_joey_bakxs_iphone
+sensor.joey_bakxs_iphone_battery_level:
+  name:
+  platform: ios
+  unique_id: level_joey_bakxs_iphone
+sensor.marit_boonks_iphone_battery_state:
+  name:
+  platform: ios
+  unique_id: state_marit_boonks_iphone
+sensor.joey_bakxs_iphone_battery_state_2:
+  name:
+  platform: ios
+  unique_id: state_joeybakxsiphone
+sensor.joey_bakxs_iphone_battery_level_2:
+  name:
+  platform: ios
+  unique_id: level_joeybakxsiphone
+sensor.marit_boonks_iphone_battery_level_2:
+  name:
+  platform: ios
+  unique_id: level_maritboksiphone
+sensor.marit_boonks_iphone_battery_state_2:
+  name:
+  platform: ios
+  unique_id: state_maritboksiphone
+binary_sensor.door_window_sensor_158d0001bf47ec:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001bf47ec
+binary_sensor.door_window_sensor_158d0001b78233:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001b78233
+binary_sensor.door_window_sensor_158d0001b86233:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001b86233
+sensor.illumination_7811dcb0693d:
+  name:
+  platform: xiaomi_aqara
+  unique_id: illumination7811dcb0693d
+light.gateway_light_7811dcb0693d:
+  name:
+  platform: xiaomi_aqara
+  unique_id: rgb7811dcb0693d
+binary_sensor.door_window_sensor_158d0001e7e252:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001e7e252
+binary_sensor.door_window_sensor_158d000201132e:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d000201132e

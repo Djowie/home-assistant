@@ -1,0 +1,52 @@
+# Example configuration.yaml entry showing two styles
+# group:
+#   living_room: light.table_lamp, switch.ac
+#   bedroom:
+#     - light.bedroom
+#     - media_player.nexus_player
+hue_view:
+  view: yes
+  entities:
+    - group.Hue
+
+Hue:
+  entities:
+    sensor.hue_motion__stairs_motion_bottom
+
+dining:
+  name: dining
+  control: hidden
+  entities:
+  - light.ikea_color__dining_l
+  - light.ikea_color__dining_r
+
+color_lights:
+  name: color_lights
+  control: hidden
+  entities:
+  - light.ikea_color__dining_l
+  - light.ikea_color__dining_r
+  - light.gateway_light_7811dcb0693d
+  - light.ikea__livingroom
+  # - light.hall
+  # - light.hallway_1st_floor
+  - light.hue_lightstrip_plus__tv
+  # - light.hue_white__kledingkamer
+  # - light.hue_white_lamp__pantry
+  # - light.ikea_white__pantry
+  # - light.color_temperature_light_1
+
+joey_tracker:
+  name: Joey
+  control: hidden
+  entities:
+  - device_tracker.mqttjoey_mqttjoey
+  - device_tracker.joeybakxsiphone
+  
+
+marit_tracker:
+  name: Marit
+  control: hidden
+  entities:
+  - device_tracker.maritboksiphone
+  - device_tracker.mqttmarit_maritiphone

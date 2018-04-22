@@ -1,0 +1,54 @@
+binary_sensor.living_room_thermostat_is_using_emergency_heat:
+  hidden: true
+light.gateway_light_7811dcb0693d:
+  friendly_name: Xiaomi Gateway light
+binary_sensor.door_window_sensor_158d0001b78233:
+  friendly_name: Pantry door
+binary_sensor.door_window_sensor_158d0001bf47ec:
+  friendly_name: Kledingkamer door
+binary_sensor.door_window_sensor_158d0001b86233:
+  friendly_name: Frontdoor
+binary_sensor.door_window_sensor_158d000201132e:
+  friendly_name: Officedoor
+binary_sensor.door_window_sensor_158d0001e7e252:
+  friendly_name: Backdoor
+sensor.illumination_7811dcb0693d:
+  friendly_name: Xiaomi Gateway Lux
+binary_sensor.living_room_thermostat_fan:
+  hidden: true
+sensor.hue_dimmer_switch_1:
+  friendly_name: Hue switch
+binary_sensor.living_room_thermostat_has_leaf:
+  custom_ui_state_card: Nest Thermostat
+  hidden: true
+sensor.living_room_thermostat_hvac_state:
+  hidden: true
+binary_sensor.living_room_thermostat_is_locked:
+  hidden: true
+sensor.living_room_thermostat_humidity:
+  friendly_name: Living Room humidity
+sensor.living_room_thermostat_target:
+  hidden: true
+sensor.living_room_thermostat_temperature:
+  hidden: true
+sensor.living_room_thermostat_operation_mode:
+  hidden: true
+binary_sensor.living_room_thermostat_online:
+  hidden: true
+automation.get_the_status_of_all_the_lights: {}
+group.color_lights:
+  hidden: true
+group.dining:
+  hidden: true
+
+script.flash_gateway1:
+  hidden: true
+script.flash_gateway2:
+  hidden: true
+script.flash_gateway3:
+  hidden: true
+script.flash_gateway4:
+  hidden: true
+
+zone.home:
+  track_ios: true

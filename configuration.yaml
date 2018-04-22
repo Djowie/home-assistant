@@ -1,0 +1,224 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 52.33
+  longitude: 5.23
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 2
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Amsterdam
+  customize: !include customize.yaml
+script: !include scripts.yaml
+group: !include groups.yaml
+automation: !include automations.yaml
+
+zone:
+  - name: School
+    latitude: 32.8773367
+    longitude: -117.2494053
+    radius: 250
+    icon: mdi:school
+
+  - name: NewBlack
+    latitude: 32.8753367
+    longitude: -117.2474053
+    radius: 100
+    icon: mdi:briefcase
+
+  # This will override the default home zone
+  - name: Home
+    latitude: 52.336468070308811
+    longitude: 5.2347723949337412
+    radius: 200
+    icon: mdi:home
+    
+# Show links to resources in log and frontend
+# introduction: 
+
+# Enables the frontend
+frontend:
+logger:
+
+# Enables configuration UI
+config:
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+
+# Discover some devices automatically
+# discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time.
+history:
+
+# View all events in a logbook
+logbook:
+
+# Track the sun
+sun:
+
+# Weather Prediction
+# sensor:
+#   - platform: yr
+#     name: Weather
+#     monitored_conditions:
+#      - symbol
+#      - temperature
+#TV
+media_player:
+  - platform: braviatv
+    host: 192.168.2.25
+  - platform: sonos
+
+# Hue motion sensor Config
+hue:
+  bridges:
+    - host: 192.168.2.16
+      allow_hue_groups: false
+
+sensor:
+  - platform: template
+    sensors:
+    # If either "device" reports as home, this sensor returns 'on' #
+      joey_tracker:
+        friendly_name: Joey
+        entity_id:
+        - device_tracker.joeybakxsiphone
+        - device_tracker.mqttjoey_mqttjoey
+        value_template: >-
+         {% if is_state('device_tracker.mqttjoey_mqttjoey', 'home') %}
+            Home
+          {% else %}
+            Away
+          {% endif %}
+      marit_tracker:
+        friendly_name: Marit
+        entity_id:
+        - device_tracker.maritboksiphone
+        - device_tracker.mqttmarit_maritiphone
+        value_template: >-
+         {% if is_state('device_tracker.mqttmarit_maritiphone', 'home') %}
+            Home
+          {% else %}
+            Away
+          {% endif %}
+
+
+#Light sensors
+# sensor:
+#   - platform: rest
+#     resource: http://192.168.2.16/api/dsVKdJ0VQyC3RQS4zLgC9iUqqFpzj1idaATXeUcB/sensors/13
+#     value_template: '{{ value_json.state.lightlevel }}'
+#     unit_of_measurement: Lux
+#     name: 'Staircase'
+        
+#   - platform: rest
+#     resource: http://192.168.2.16/api/dsVKdJ0VQyC3RQS4zLgC9iUqqFpzj1idaATXeUcB/sensors/12
+#     value_template: '{{ value_json.state.temperature | float / 100 }}'
+#     unit_of_measurement: °C
+#     name: 'Sensor Staircase'
+
+#   - platform: rest
+#     resource: http://192.168.2.16/api/dsVKdJ0VQyC3RQS4zLgC9iUqqFpzj1idaATXeUcB/sensors/15
+#     value_template: '{{ value_json.state.status }}'
+#     name: Light
+#     device_class: light
+#     scan_interval: 2
+#     name: 'Motion sensor staircase' 
+   
+nest:
+  client_id: !secret nest_clientid
+  client_secret: !secret nest_secret 
+
+
+influxdb:
+  host: 127.0.0.1
+  tags:
+    instance: prod
+    source: hass
+
+# Text to speech
+tts:
+  platform: google
+
+xiaomi_aqara:
+  discovery_retry: 5
+  gateways:
+   - key: !secret xiaomi_key
+
+#presence_detector
+device_tracker:
+  - platform: unifi
+    host: 192.168.2.1
+    verify_ssl: false
+    username: admin
+    password: !secret device_tracker_unifi_password
+    track_new_devices: true
+    interval_seconds: 10
+
+  #OwnTracks GPS
+  - platform: owntracks
+    max_gps_accuracy: 200
+    waypoints: True
+    waypoint_whitelist:
+    - mqttMarit
+    - mqttJoey
+
+# Example configuration.yaml entry
+input_boolean:
+  alarm_triggered:
+    name: Alarm in action.
+    initial: off
+  alarm_armed:
+    name: Alarm armed
+    initial: off
+
+#Telegram Intergration
+telegram_bot:
+- platform: polling
+  api_key: !secret telegram_apikey
+  allowed_chat_ids:
+    - 63738602
+
+# Notify
+notify:
+  - name: Jeeves
+    platform: telegram
+    chat_id: !secret telegram_chatid
+
+# MQTT
+mqtt:
+  # broker: m23.cloudmqtt.com
+  # port: 29828
+  # username: nrhefgdh
+  # password: zn4nlQBFXryL
+  #LAN Broker
+  broker: 192.168.2.1
+  port: 1883
+  username: Sjonic
+  password: !secret own_mqqt_pass
+
+http:
+  api_password: !secret http_api_password
+  # ssl_key: /etc/letsencrypt/live/homeassistant.sjoit.com/privkey.pem  
+  base_url: https://homeassistant.sjoit.com:8123
+  trusted_networks:
+   - 192.168.2.1
+  # Uncomment this if you are using SSL or running in Docker etc
+  # ssl_certificate: /etc/letsencrypt/live/homeassistant.sjoit.com/fullchain.pem
+
+  # https://community.home-assistant.io/t/tts-setup-problem/36269/6?u=djowie <-- TTS OVER SSL
+  ssl_certificate: /config/cert.pem
+  ssl_key: /config/privkey.pem
+
+  
