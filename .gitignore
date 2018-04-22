@@ -7,9 +7,20 @@ known_devices.yaml
 *.db
 *.db-journal
 *.perm
+*.pem
+home-assistant.log
 *.conf
+*.DS_Store
+*.config_entries.json
+*.spotify-token-cache
+*.uuid
+*.vscode/
+
 
 #folders
-!deps/
-!scenes/
-!backup_certs/
+deps
+tts
+backup_certs
+
+#don't ignore folders
+!scenes
