@@ -1,0 +1,15 @@
+# FILES to be ignored
+# https://www.home-assistant.io/docs/ecosystem/backup/backup_github/
+!*.yaml
+secrets.yaml
+known_devices.yaml
+#db files
+*.db
+*.db-journal
+*.perm
+*.conf
+
+#folders
+!deps
+!scenes
+!backup_certs
