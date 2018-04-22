@@ -10,6 +10,6 @@ known_devices.yaml
 *.conf
 
 #folders
-!deps
-!scenes
-!backup_certs
+!deps/
+!scenes/
+!backup_certs/
