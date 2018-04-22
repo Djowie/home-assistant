@@ -16,7 +16,6 @@ home-assistant.log
 *.uuid
 *.vscode/
 
-
 #folders
 deps
 tts
