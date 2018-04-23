@@ -15,6 +15,11 @@ script: !include scripts.yaml
 group: !include groups.yaml
 automation: !include automations.yaml
 
+#travis
+sensor:
+  - platform: travisci
+    api_key: !secret travisci_key
+
 zone:
   - name: School
     latitude: 32.8773367
