@@ -229,7 +229,7 @@ http:
   # ssl_certificate: /etc/letsencrypt/live/homeassistant.sjoit.com/fullchain.pem
 
   # https://community.home-assistant.io/t/tts-setup-problem/36269/6?u=djowie <-- TTS OVER SSL
-  ssl_certificate: !secret certpem
-  ssl_key: !secret privkey
+  ssl_certificate: /config/cert.pem
+  ssl_key: /config/privkey.pem
 
   
