@@ -94,7 +94,7 @@ sensor:
     sensors:
     # If either "device" reports as home, this sensor returns 'on' #
       joey_tracker:
-        friendly_name: Djowie
+        friendly_name: Joey
         entity_id:
         - device_tracker.joeybakxsiphone
         - device_tracker.mqttjoey_mqttjoey
