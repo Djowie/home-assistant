@@ -2,8 +2,8 @@ homeassistant:
   # Name of the location where Home Assistant is running
   name: Home
   # Location required to calculate the time the sun rises and sets
-  latitude: 52.33
-  longitude: 5.23
+  latitude: !secret latitude
+  longitude: !secret longitude
   # Impacts weather/sunrise data (altitude above sea level in meters)
   elevation: 2
   # metric for Metric, imperial for Imperial
@@ -14,26 +14,6 @@ homeassistant:
 script: !include scripts.yaml
 group: !include groups.yaml
 automation: !include automations.yaml
-
-zone:
-  - name: School
-    latitude: 32.8773367
-    longitude: -117.2494053
-    radius: 250
-    icon: mdi:school
-
-  - name: NewBlack
-    latitude: 32.8753367
-    longitude: -117.2474053
-    radius: 100
-    icon: mdi:briefcase
-
-  # This will override the default home zone
-  - name: Home
-    latitude: 52.336468070308811
-    longitude: 5.2347723949337412
-    radius: 200
-    icon: mdi:home
     
 # Show links to resources in log and frontend
 # introduction: 
