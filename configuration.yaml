@@ -208,7 +208,7 @@ http:
   # Uncomment this if you are using SSL or running in Docker etc
   # ssl_certificate: /etc/letsencrypt/live/homeassistant.sjoit.com/fullchain.pem
   # https://community.home-assistant.io/t/tts-setup-problem/36269/6?u=djowie <-- TTS OVER SSL
-  ssl_certificate: !secret certpem
-  ssl_key: !secret privkey
+  ssl_certificate: !secret http_ssl_certificate
+  ssl_key: !secret http_ssl_key
 
   
