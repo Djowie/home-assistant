@@ -357,7 +357,7 @@
         conditions:
           - condition: numeric_state
             entity_id: sensor.hall_motion
-            above: 0
+            below: 15
     action:
       - service: light.turn_on
         data:
