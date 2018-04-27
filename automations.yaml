@@ -346,8 +346,8 @@
           message: "Welcome home, Marit!!"
           delay: 00:00:05
 
- # Turns on lights in hall
-  - alias: 'Rule 7: Light on in the evening'
+ # Turns on lights in hall on motion
+  - alias: 'Rule 7: Hall motion, lights on'
     trigger:
       - platform: state
         entity_id: sensor.hue_motion__stairs_motion_bottom
@@ -361,4 +361,16 @@
     action:
       - service: light.turn_on
         data:
-          entity_id: light.hall     
+          entity_id: light.hall
+
+  #turn of lights if there is no motion
+  - alias: No motion in hall, turn off lights
+    trigger:
+      platform: state
+      entity_id: sensor.hue_motion__stairs_motion_bottom
+      to: 'off'
+      for:
+        minutes: 5
+    action:
+      - service: light.turn_off
+        entity_id: light.hall
