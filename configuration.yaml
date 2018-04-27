@@ -201,6 +201,11 @@ notify:
   - name: Jeeves
     platform: telegram
     chat_id: !secret telegram_chatid
+#https://www.home-assistant.io/components/notify.slack/
+  - name: Jeeves
+    platform: slack
+    api_key: !secret slack_apikey
+    default_channel: '#general'
 
 # MQTT
 mqtt:
