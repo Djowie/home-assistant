@@ -7,7 +7,9 @@ known_devices.yaml
 *.db
 *.db-journal
 *.perm
-*.pem
+privkey.pem
+chain.pem
+cert.pem
 home-assistant.log
 *.conf
 *.DS_Store
