@@ -15,11 +15,6 @@ script: !include scripts.yaml
 group: !include groups.yaml
 automation: !include automations.yaml
 
-#travis
-sensor:
-  - platform: travisci
-    api_key: !secret travisci_key
-
 zone:
   - name: School
     latitude: 32.8773367
@@ -92,6 +87,9 @@ hue:
       allow_hue_groups: false
 
 sensor:
+  - platform: travisci
+    api_key: !secret travisci_key
+  - platform: hue_sensor
   - platform: template
     sensors:
     # If either "device" reports as home, this sensor returns 'on' #
@@ -117,7 +115,10 @@ sensor:
           {% else %}
             Away
           {% endif %}
-
+      hall_motion:
+        friendly_name: 'Hall Lux'
+        value_template: "{{ states.sensor.hue_motion__stairs_motion_bottom.attributes.lux }}"
+        unit_of_measurement: 'lux'
 
 #Light sensors
 # sensor:

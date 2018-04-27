@@ -13,6 +13,16 @@ Hue:
   entities:
     sensor.hue_motion__stairs_motion_bottom
 
+travis:
+  name: Travis
+  entities:
+    - sensor.djowiehomeassistant_last_build_duration
+    - sensor.djowiehomeassistant_last_build_finished_at
+    - sensor.djowiehomeassistant_last_build_id
+    - sensor.djowiehomeassistant_last_build_started_at
+    - sensor.djowiehomeassistant_last_build_state
+    - sensor.djowiehomeassistant_state
+
 dining:
   name: dining
   control: hidden
