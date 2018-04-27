@@ -39,7 +39,6 @@
           message: "The sun has set!"
           delay: 00:00:05
 
-
 # Turns on lights when we get up throughout the week
   - alias: 'Rule 2: Light on in the morning'
     trigger:
@@ -346,3 +345,20 @@
           volume: 0.2
           message: "Welcome home, Marit!!"
           delay: 00:00:05
+
+ # Turns on lights in hall
+  - alias: 'Rule 7: Light on in the evening'
+    trigger:
+      - platform: state
+        entity_id: sensor.hue_motion__stairs_motion_bottom
+        to: 'on'
+    condition:
+        condition: and 
+        conditions:
+          - condition: state
+            entity_id: sensor.hall_motion
+            above: '0'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.hall     
