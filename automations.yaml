@@ -355,7 +355,7 @@
     condition:
         condition: and 
         conditions:
-          - condition: state
+          - condition: numeric_state
             entity_id: sensor.hall_motion
             above: 0
     action:
