@@ -157,8 +157,8 @@ device_tracker:
     max_gps_accuracy: 200
     waypoints: True
     waypoint_whitelist:
-    - mqttMarit
-    - mqttJoey
+    - mqttmarit
+    - mqttjoey
 
 # Example configuration.yaml entry
 input_boolean:
@@ -189,11 +189,6 @@ notify:
 
 # MQTT
 mqtt:
-  # broker: m23.cloudmqtt.com
-  # port: 29828
-  # username: nrhefgdh
-  # password: zn4nlQBFXryL
-  #LAN Broker
   broker: 192.168.2.1
   port: 1883
   username: Sjonic
