@@ -143,8 +143,8 @@ xiaomi_aqara:
    - key: !secret xiaomi_key
 
 #iftt
-iftt:
-  key: !secret iftt_key
+ifttt:
+  key: !secret ifttt_key
 
 #presence_detector
 device_tracker:

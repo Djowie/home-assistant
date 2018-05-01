@@ -80,5 +80,5 @@ sonos_say:
 disable_shutter:
   alias: "Disable shutter"
   sequence:
-    - service: iftt.trigger
+    - service: ifttt.trigger
       data: {"event":"privacy_shutter_disabled"}
