@@ -76,3 +76,9 @@ sonos_say:
     - service: media_player.sonos_restore
       data_template:
         entity_id: "{{ sonos_entity }}"
+
+disable_shutter:
+  alias: "Disable shutter"
+  sequence:
+    - service: iftt.trigger
+      data: {"event":"privacy_shutter_disabled"}
