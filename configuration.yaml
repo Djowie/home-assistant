@@ -152,6 +152,10 @@ device_tracker:
     track_new_devices: true
     interval_seconds: 10
 
+#iftt
+ifttt:
+  key: !secret iftt_key
+
   #OwnTracks GPS
   - platform: owntracks
     max_gps_accuracy: 200
