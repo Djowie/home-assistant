@@ -82,3 +82,8 @@ disable_shutter:
   sequence:
     - service: ifttt.trigger
       data: {"event":"privacy_shutter_disabled"}
+enable_shutter:
+  alias: "Enable shutter"
+  sequence:
+    - service: ifttt.trigger
+      data: {"event":"privacy_shutter_enabled"}
