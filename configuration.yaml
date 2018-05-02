@@ -69,7 +69,9 @@ hue:
 sensor:
   - platform: travisci
     api_key: !secret travisci_key
-  - platform: hue_sensor
+  - platform: hue
+    ip_address: 192.168.2.16
+    token: 1iUCbhzFlH5JFpWq7hkPPA4pYJ7R2caTlpsWci0I
   - platform: template
     sensors:
     # If either "device" reports as home, this sensor returns 'on' #
