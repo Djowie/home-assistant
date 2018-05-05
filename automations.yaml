@@ -75,6 +75,10 @@
           entity_id: light.ikea_white__pantry
           brightness_pct: 50
           transition: 1600
+      - service: notify.Jeeves
+        data:
+          title: '*Morning light*'
+          message: "Morning light has been triggered"
 
 #Turn off everything when we are not home 
   #lights
@@ -99,6 +103,10 @@
          message: "Hi Sir, Away mode has just been succesfully triggered. The lights have successfully been turned off, hope to see you soon. Also the NEST away mode has been set to {% if is_state('states.climate.living_room.state.away_mode', 'on') %}*on*. \n{% else %}*off*.\n{% endif %}"
       - service: ifttt.trigger
         data: {"event":"privacy_shutter_disabled"}
+      - service: notify.Jeeves
+        data:
+          title: '*Camera Shutter C6T - D*'
+          message: "*Camera Shutter C6T Livingroom has been disabled, recording...*"
 
 #Turn off all the lights when we need to go to bed during the week
   #lights
@@ -324,6 +332,10 @@
           delay: 00:00:05
       - service: ifttt.trigger
         data: {"event":"privacy_shutter_enabled"}
+      - service: notify.Jeeves
+        data:
+          title: '*Camera Shutter C6T - E*'
+          message: "*Camera Shutter C6T Livingroom has been enabled, privacy protected*"
 
 # Welcome people - group.marit_trcker	
   - alias: 'Welcome Marit home'
@@ -365,7 +377,7 @@
     action:
       - service: light.turn_on
         data:
-          entity_id: light.hall
+          entity_id: light.hall 
 
   #turn of lights if there is no motion
   - alias: No motion in hall, turn off lights
