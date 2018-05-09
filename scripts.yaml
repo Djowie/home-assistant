@@ -76,6 +76,12 @@ sonos_say:
     - service: media_player.sonos_restore
       data_template:
         entity_id: "{{ sonos_entity }}"
+#  - service: script.sonos_say
+# data:
+#   sonos_entity: media_player.living_room
+#   volume: 0.2
+#   message: "Welcome home, Joey!!"
+#   delay: 00:00:05
 
 disable_shutter:
   alias: "Disable shutter"
