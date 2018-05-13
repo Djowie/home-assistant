@@ -76,7 +76,7 @@
           brightness_pct: 50
           transition: 1600
       - service: ifttt.trigger
-        data: {"event":" privacy_shutter_enabled"}
+        data: {"event":"privacy_shutter_enabled"}
       - service: notify.Jeeves
         data:
           title: '*Morning light*'
