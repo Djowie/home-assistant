@@ -63,7 +63,6 @@
           {% else %}
             none
           {% endif %}
-         entity_id: group.dining, light.ikea_white__pantry
          brightness_pct: 15
       - service: light.turn_on
         data:
