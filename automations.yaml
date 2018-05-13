@@ -8,19 +8,46 @@
       data_template: 
         title: 'New Home Assistant Release'
         message: "Home Assistant  {{ states.updater.updater.state }}  is now available."
-      
-# Turns on lights 1 hour before sunset if people are home
-# and if people get home between 16:00-23:00
-  - alias: 'Rule 1: Light on in the evening'
+
+#rule 1, automatic evening lights
+  - alias: 'Rule 1: Automatic evening lights'
+    trigger:
+        platform: state
+        entity_id: sensor.hall_motion
+        below: 2
+    condition:
+     condition: and 
+     conditions:
+      - condition: state
+        entity_id: group.dining, light.hue_lightstrip_plus__tv
+        state: 'off'
+      - condition: time
+        after: '17:00'
+        before: '21:00'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: group.dining, light.hue_lightstrip_plus__tv
+          brightness: 120
+      - service: notify.Jeeves
+        data:
+          title: '*Sunset*'
+          message: "I will start putting on the lights in the livingroom. Lux in the hall has dropped below 2 and the lights are currently still turned off"
+      - service: script.sonos_say
+        data:
+          sonos_entity: media_player.living_room
+          volume: 0.2
+          message: "I will start putting on the lights in the livingroom!"
+          delay: 00:00:05
+
+# Sun has set
+  - alias: 'Rule 6: Sun has set, Text to Speech'
     trigger:
       # Prefix the first line of each trigger configuration
       # with a '-' to enter multiple
       - platform: sun
         event: sunset
         offset: '-00:00:00'
-      # - platform: state
-      #   entity_id: group.all_devices
-      #   to: 'home'
     action:
       # - service: light.turn_on
       #   data:
@@ -53,7 +80,7 @@
         state: 'off'
       - condition: time
         after: '02:00'
-        before: '08:00'
+        before: '10:00'
     action: 
       - service: light.turn_on
         data:
