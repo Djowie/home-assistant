@@ -31,8 +31,8 @@
     action:
       - service: light.turn_on
         data:
-          entity_id: group.dining, light.hue_lightstrip_plus__tv
-          brightness: 120
+          entity_id: light.ikea__livingroom, light.hue_lightstrip_plus__tv
+          brightness: 140
       - service: notify.Jeeves
         data:
           title: '*Sunset*'
