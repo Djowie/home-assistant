@@ -20,7 +20,10 @@
      condition: and 
      conditions:
       - condition: state
-        entity_id: group.dining, light.hue_lightstrip_plus__tv
+        entity_id: group.dining
+        state: 'off'
+      - condition: state
+        entity_id: light.hue_lightstrip_plus__tv
         state: 'off'
       - condition: time
         after: '17:00'
