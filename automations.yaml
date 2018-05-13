@@ -13,7 +13,8 @@
   - alias: 'Rule 1: Automatic evening lights'
     trigger:
         platform: state
-        entity_id: sensor.hall_motion
+        entity_id: sensor.hue_motion__stairs_motion_bottom
+        value_template: "{{ state.attributes.lux }}"
         below: 2
     condition:
      condition: and 
