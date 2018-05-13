@@ -175,6 +175,9 @@ input_boolean:
   alarm_armed:
     name: Alarm armed
     initial: off
+# should be used to determine if morning light has already been triggered that day. 
+  morning_light:
+    name: Morning light has been triggered
 
 #Telegram Intergration
 telegram_bot:

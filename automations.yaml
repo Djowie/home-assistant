@@ -54,15 +54,15 @@
       - condition: time
         after: '02:00'
         before: '08:00'
-        weekday:
-          - mon
-          - tue
-          - wed
-          - thu
-          - fri
     action: 
       - service: light.turn_on
         data:
+         entity_id: >
+          {% if state.attributes.lux > 10) %}
+            group.dining, light.ikea_white__pantry
+          {% else %}
+            none
+          {% endif %}
          entity_id: group.dining, light.ikea_white__pantry
          brightness_pct: 15
       - service: light.turn_on
