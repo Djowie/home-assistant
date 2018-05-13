@@ -54,10 +54,6 @@
       #     entity_id: group.dining, light.hue_lightstrip_plus__tv
       #     brightness: 120
       #     transition: 1800
-      # - service: notify.Jeeves
-      #   data:
-      #     title: '*Sunset*'
-      #     message: "Excuse me sir, sorry to interrupt but the sun will set in 30 minutes. I will start putting on some lights to prepare your arrival."
       # - service: tts.google_say
       - service: script.sonos_say
         data:
