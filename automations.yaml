@@ -33,6 +33,7 @@
         data:
           entity_id: light.ikea__livingroom, light.hue_lightstrip_plus__tv
           brightness: 140
+          transition: 1800
       - service: notify.Jeeves
         data:
           title: '*Sunset*'
