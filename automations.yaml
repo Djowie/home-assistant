@@ -82,6 +82,10 @@
       - condition: time
         after: '02:00'
         before: '10:00'
+      - condition: numeric_state
+        entity_id: sensor.hue_motion__stairs_motion_bottom
+        value_template: '{{ state.attributes.lux }}'
+        below: 10
     action: 
       - service: light.turn_on
         data:
