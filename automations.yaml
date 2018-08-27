@@ -434,7 +434,7 @@
         entity_id: light.hall
 
 #Notify me when someone turns of the lights upstairs with the physical button - Kledingkamer
-- alias: "Notification: Tell me when someone turns of the lights with the physical switch - Kledingkamer"
+  - alias: "Notification: Tell me when someone turns of the lights with the physical switch - Kledingkamer"
     trigger:
         platform: state
         entity_id: light.hue_white__kledingkamer
@@ -446,7 +446,7 @@
          message: "Hi Sir, just wanted to inform you that someone has flipped the switch from the Kledingkamer"
 
 #Notify me when someone turns of the lights upstairs with the physical button - Office
-- alias: "Notification: Tell me when someone turns of the lights with the physical switch - Kledingkamer"
+  - alias: "Notification: Tell me when someone turns of the lights with the physical switch - Kledingkamer"
     trigger:
         platform: state
         entity_id: light.color_temperature_light_1
