@@ -440,10 +440,10 @@
     entity_id: light.hue_white__kledingkamer
     to: 'unavailable'
   action: 
-      - service: notify.Jeeves
-        data:
-          title: '*Light switch flipped*'
-          message: "Hi Sir, just wanted to inform you that someone has flipped the switch from the Kledingkamer"
+    - service: notify.Jeeves
+      data:
+        title: '*Light switch flipped*'
+        message: "Hi Sir, just wanted to inform you that someone has flipped the switch from the Kledingkamer"
 
 #Notify me when someone turns of the lights upstairs with the physical button - Office
 - alias: "Notification: Tell me when someone turns of the lights with the physical switch - Kledingkamer"
