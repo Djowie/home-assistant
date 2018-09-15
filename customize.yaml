@@ -40,6 +40,8 @@ group.color_lights:
   hidden: true
 group.dining:
   hidden: true
+group.kitchen:
+  hidden: true
 
 script.flash_gateway1:
   hidden: true
