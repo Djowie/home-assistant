@@ -42,7 +42,6 @@ group.dining:
   hidden: true
 group.kitchen:
   hidden: true
-
 script.flash_gateway1:
   hidden: true
 script.flash_gateway2:
@@ -51,6 +50,31 @@ script.flash_gateway3:
   hidden: true
 script.flash_gateway4:
   hidden: true
-
 zone.home:
   track_ios: true
+device_tracker.eigenaarpc:
+  hidden: true
+device_tracker.honor_6c_pro:
+  hidden: true
+device_tracker.iphone:
+  hidden: true
+device_tracker.iphonevaniris:
+  hidden: true
+device_tracker.iphonevistrator:
+  hidden: true
+sensor.home_eta:
+  hidden: true
+device_tracker.ipodtouch:
+  hidden: true
+device_tracker.mqttjoey_33a7a77907564a9bb04a165633edad16:
+  hidden: true
+device_tracker.mqttjoey_mqttjoey:
+  hidden: true
+device_tracker.mqttmarit_maritiphone:
+  hidden: true
+device_tracker.macbookpro:
+  hidden: true
+device_tracker.sammy:
+  hidden: true
+binary_sensor.home_away:
+  hidden: true
