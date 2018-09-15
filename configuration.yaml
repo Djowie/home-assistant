@@ -206,7 +206,7 @@ notify:
 http:
   api_password: !secret http_api_password
   # ssl_key: /etc/letsencrypt/live/homeassistant.sjoit.com/privkey.pem
-  base_url: https://homeassistant.sjoit.com:8123
+  base_url: homeassistant.sjoit.com:8123
   trusted_networks:
     - 192.168.2.1
   # Uncomment this if you are using SSL or running in Docker etc
