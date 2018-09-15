@@ -47,13 +47,6 @@ automation: !include automations.yaml
 # Track the sun
 ? sun
 
-# Weather Prediction
-# sensor:
-#   - platform: yr
-#     name: Weather
-#     monitored_conditions:
-#      - symbol
-#      - temperature
 #TV
 media_player:
   - platform: braviatv
@@ -72,6 +65,11 @@ sensor:
   - platform: hue
     ip_address: !secret hue_bridge_ip
     token: !secret hue_token
+  - platform: yr
+    name: Weather
+    monitored_conditions:
+      - symbol
+      - temperature
 
   - platform: template
     sensors:
@@ -206,7 +204,7 @@ notify:
 http:
   api_password: !secret http_api_password
   # ssl_key: /etc/letsencrypt/live/homeassistant.sjoit.com/privkey.pem
-  base_url: homeassistant.sjoit.com:8123
+  base_url: https://homeassistant.sjoit.com:8123
   trusted_networks:
     - 192.168.2.1
   # Uncomment this if you are using SSL or running in Docker etc
