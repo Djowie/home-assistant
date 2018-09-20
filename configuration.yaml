@@ -21,6 +21,8 @@ automation: !include automations.yaml
 # Enables the frontend
 ? frontend
 ? logger
+# HomeKit setup
+? homekit
 
 # Enables configuration UI
 ? config
@@ -193,9 +195,6 @@ notify:
     platform: slack
     api_key: !secret slack_apikey
     default_channel: "#general"
-
-# HomeKit setup
-? homekit
 
 # # MQTT
 # mqtt:
