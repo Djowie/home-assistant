@@ -194,6 +194,9 @@ notify:
     api_key: !secret slack_apikey
     default_channel: "#general"
 
+# HomeKit setup
+? homekit
+
 # # MQTT
 # mqtt:
 #   broker: 192.168.2.1
