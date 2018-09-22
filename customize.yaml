@@ -66,15 +66,31 @@ sensor.home_eta:
   hidden: true
 device_tracker.ipodtouch:
   hidden: true
-device_tracker.mqttjoey_33a7a77907564a9bb04a165633edad16:
-  hidden: true
-device_tracker.mqttjoey_mqttjoey:
-  hidden: true
-device_tracker.mqttmarit_maritiphone:
-  hidden: true
 device_tracker.macbookpro:
   hidden: true
 device_tracker.sammy:
   hidden: true
 binary_sensor.home_away:
+  hidden: true
+device_tracker.mqttjoey_mqttjoey:
+  hidden: true
+device_tracker.mqttjoey_33a7a77907564a9bb04a165633edad16:
+  hidden: true
+device_tracker.mqttmarit_maritiphone:
+  hidden: true
+device_tracker.joeybakxsiphone2:
+  hidden: true
+device_tracker.joeybaksiphone2:
+  friendly_name: Joey Bakx iPhone
+device_tracker.cscv248a032wfr168239470:
+  hidden: true
+device_tracker.canong_printer:
+  hidden: true
+device_tracker.joeysmbp:
+  hidden: true
+device_tracker.joeysipadpro:
+  hidden: true
+device_tracker.lumigatewayv3_miio78331287:
+  hidden: true
+device_tracker.nest:
   hidden: true

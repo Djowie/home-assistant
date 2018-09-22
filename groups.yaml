@@ -56,12 +56,10 @@ joey_tracker:
   name: Joey
   control: hidden
   entities:
-    - device_tracker.mqttjoey_mqttjoey
-    - device_tracker.joeybakxsiphone
+    - device_tracker.joeybaksiphone2
 
 marit_tracker:
   name: Marit
   control: hidden
   entities:
     - device_tracker.maritboksiphone
-    - device_tracker.mqttmarit_maritiphone
