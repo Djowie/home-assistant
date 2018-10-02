@@ -65,6 +65,10 @@
           message: "You all seem to have left the house, I will make sure everything will be ready when you come back."
       - service: light.turn_off
         entity_id:  group.all_lights
+      - service: media_player.turn_off
+        entity_id: media_player.sony_bravia_tv
+      - service: ifttt.trigger
+        data: {"event":"privacy_shutter_disabled"} 
 
 # Sun has set
   - alias: 'Rule 6: Sun has set, Text to Speech'
