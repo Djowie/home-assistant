@@ -45,6 +45,27 @@
           message: "I will start putting on the lights in the livingroom!"
           delay: 00:00:05
 
+# Turn off the lights and activate the camera's when AWAY MODE is triggerd.
+# //TODO add holiday boolean
+  - alias: 'Rule 8: Trigger away mode, when people are not home'
+    trigger:
+      platform: state
+      entity_id: group.all_devices
+      to: 'not_home'
+    condition:
+      condition: and 
+      conditions:
+        - condition: time
+          after: '06:00'
+          before: '09:59'
+    action:
+      - service: notify.Jeeves
+        data:
+          title: '*Away*'
+          message: "You all seem to have left the house, I will make sure everything will be ready when you come back."
+      - service: light.turn_off
+        entity_id:  group.all_lights
+
 # Sun has set
   - alias: 'Rule 6: Sun has set, Text to Speech'
     trigger:
@@ -116,24 +137,30 @@
 # Automatically turn off the lights in the livingroom in the morning when there is more sunlight.
   - alias: 'Rule 2.1: Automaically turn off lights when sunlight comes in'
     trigger:
-        platform: numeric_state
-        entity_id: sensor.illumination_7811dcb0693d
-        above: 750 
+        platform: sun
+        event: sunrise
     condition:
      condition: and 
      conditions:
       - condition: time
         after: '07:00'
         before: '11:00'
+      - condition: numeric_state
+        entity_id: sensor.hue_motion__stairs_motion_bottom
+        value_template: '{{ state.attributes.lux }}'
+        above: 10
+      - condition: numeric_state
+        entity_id: sensor.illumination_7811dcb0693d
+        above: 750
     action: 
       - service: light.turn_off
-        entity_id: group.dining, light.ikea_white__pantry, group.kitchen
+        entity_id:  group.all_lights
 
 #Notify me when Marit is home after work, don't run this during the night because of WiFi presence
   - alias: "Rule 5: Let me know Marit is home, and turn on the light if it isn't already."
     trigger:
         platform: state
-        entity_id: device_tracker.mqttmarit_maritiphone
+        entity_id: group.marit_tracker
         to: 'home'
     condition:
       condition: and 
@@ -150,7 +177,7 @@
           below: 10
         - condition: numeric_state
           entity_id: sensor.illumination_7811dcb0693d
-          below: 100
+          below: 700
     action: 
       - service: light.turn_on
         data:
