@@ -30,6 +30,12 @@ homekit:
         - feature: play_pause
         - feature: play_stop
         - feature: toggle_mute
+    media_player.living_room:
+      feature_list:
+        - feature: on_off
+        - feature: play_pause
+        - feature: play_stop
+        - feature: toggle_mute
 
 # Enables configuration UI
 ? config
