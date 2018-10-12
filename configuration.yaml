@@ -62,6 +62,8 @@ homekit:
 # Track the sun
 ? sun
 
+? ios
+
 #TV
 media_player:
   - platform: braviatv
