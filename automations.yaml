@@ -49,15 +49,30 @@
 # //TODO add holiday boolean
   - alias: 'Rule 8: Trigger away mode, when people are not home'
     trigger:
-      platform: state
-      entity_id: group.all_devices
-      to: 'not_home'
+        - platform: state
+          entity_id: device_tracker.joeybakxsiphone
+          to: 'not_home'
+        - platform: state
+          entity_id: device_tracker.joey_bakxs_iphone
+          to: 'not_home'
+        - platform: state
+          entity_id: device_tracker.marits_iphone
+          to: 'not_home'
     condition:
       condition: and 
       conditions:
         - condition: time
           after: '06:00'
           before: '09:59'
+        - condition: state
+          entity_id: device_tracker.marits_iphone
+          state: 'not_home'
+        - condition: state
+          entity_id: device_tracker.joeybakxsiphone
+          state: 'not_home'
+        - condition: state
+          entity_id: device_tracker.joey_bakxs_iphone
+          state: 'not_home'
     action:
       - service: notify.Jeeves
         data:
