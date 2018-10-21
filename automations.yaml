@@ -126,16 +126,7 @@
         entity_id: sensor.hue_motion__stairs_motion_bottom
         value_template: '{{ state.attributes.lux }}'
         below: 8
-    action: 
-      - service: light.turn_on
-        data:
-         entity_id: >
-          {% if state.attributes.lux > 10) %}
-            group.dining, light.ikea_white__pantry
-          {% else %}
-            none
-          {% endif %}
-         brightness_pct: 15
+    action:
       - service: light.turn_on
         data:
           entity_id: group.dining
@@ -154,7 +145,7 @@
           message: "Morning light has been triggered, camera has been deactivated."
 
 # Automatically turn off the lights in the livingroom in the morning when there is more sunlight.
-  - alias: 'Rule 2.1: Automaically turn off lights when sunlight comes in'
+  - alias: 'Rule 2.1: Automatically turn off lights when sunlight comes in'
     trigger:
         platform: sun
         event: sunrise
@@ -174,6 +165,26 @@
     action: 
       - service: light.turn_off
         entity_id:  group.all_lights
+
+# Automatically turn off the lights in the kitchen and dining, when it's after 09:00 and it's light outside.
+  - alias: 'Rule 2.2: Automatically turn off lights when sunlight comes in'
+    trigger:
+        platform: state
+        entity_id: sensor.illumination_7811dcb0693d
+        above: 750
+    condition:
+     condition: and 
+     conditions:
+      - condition: state
+        entity_id: group.dining
+        state: 'on'
+      - condition: numeric_state
+        entity_id: sensor.hue_motion__stairs_motion_bottom
+        value_template: '{{ state.attributes.lux }}'
+        above: 10
+    action: 
+      - service: light.turn_off
+        entity_id: group.dining
 
 #Notify me when Marit is home after work, don't run this during the night because of WiFi presence
   - alias: "Rule 5: Let me know Marit is home, and turn on the light if it isn't already."
