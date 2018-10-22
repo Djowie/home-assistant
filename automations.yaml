@@ -169,7 +169,7 @@
 # Automatically turn off the lights in the kitchen and dining, when it's after 09:00 and it's light outside.
   - alias: 'Rule 2.2: Automatically turn off lights when sunlight comes in'
     trigger:
-        platform: state
+        platform: numeric_state
         entity_id: sensor.illumination_7811dcb0693d
         above: 750
     condition:
