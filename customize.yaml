@@ -12,6 +12,8 @@ binary_sensor.door_window_sensor_158d000201132e:
   friendly_name: Officedoor
 binary_sensor.door_window_sensor_158d0001e7e252:
   friendly_name: Backdoor
+binary_sensor.door_window_sensor_158d0001e5d475:
+  friendly_name: Hall
 sensor.illumination_7811dcb0693d:
   friendly_name: Xiaomi Gateway Lux
 binary_sensor.living_room_thermostat_fan:
