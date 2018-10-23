@@ -400,7 +400,7 @@
         data: {"event":"privacy_shutter_enabled"}
       - service: notify.Jeeves
         data:
-          title: '*Camera Shutter C6T - E*'
+          title: '*Camera Shutter C6T - Enabled*'
           message: "*Camera Shutter C6T Livingroom has been enabled, privacy protected*"
 
 # Welcome people - group.marit_trcker	
@@ -427,6 +427,10 @@
           volume: 0.2
           message: "Welcome home, Marit!!"
           delay: 00:00:05
+      - service: notify.Jeeves
+        data:
+          title: '*Camera Shutter C6T - Enabled*'
+          message: "*Camera Shutter C6T Livingroom has been enabled, privacy protected*"
 
  # Turns on lights in hall on motion
   - alias: 'Rule 7: Hall motion, lights on'
