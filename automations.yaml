@@ -85,6 +85,32 @@
       - service: ifttt.trigger
         data: {"event":"privacy_shutter_disabled"} 
 
+# Inform me when I've left the home
+  - alias: 'Rule: Inform me that Joey left the house'
+    trigger:
+        - platform: state
+          entity_id: joey_tracker
+          from: 'home'
+          to: 'not_home'
+    action:
+      - service: notify.Jeeves
+        data:
+          title: '*Joey left the house*'
+          message: "Joey seems to have left the house."
+
+# Inform me when I've left the home
+  - alias: 'Rule: Inform me that Marti left the house'
+    trigger:
+        - platform: state
+          entity_id: marit_tracker
+          from: 'home'
+          to: 'not_home'
+    action:
+      - service: notify.Jeeves
+        data:
+          title: '*Marit left the house*'
+          message: "Marit seems to have left the house."
+
 # Sun has set
   - alias: 'Rule 6: Sun has set, Text to Speech'
     trigger:
