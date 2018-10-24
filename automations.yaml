@@ -89,7 +89,7 @@
   - alias: 'Rule: Inform me that Joey left the house'
     trigger:
         - platform: state
-          entity_id: joey_tracker
+          entity_id: group.joey_tracker
           to: 'not_home'
     action:
       - service: notify.Jeeves
@@ -101,7 +101,7 @@
   - alias: 'Rule: Inform me that Marti left the house'
     trigger:
         - platform: state
-          entity_id: marit_tracker
+          entity_id: group.marit_tracker
           to: 'not_home'
     action:
       - service: notify.Jeeves
