@@ -38,6 +38,10 @@
         data:
           title: '*Sunset*'
           message: "I will start putting on the lights in the livingroom. Lux in the hall has dropped below 2 and the lights are currently still turned off"
+      - service: notify.JeevesSlack
+        data:
+          title: '*Sunset*'
+          message: "I will start putting on the lights in the livingroom. Lux in the hall has dropped below 2 and the lights are currently still turned off"
       - service: script.sonos_say
         data:
           sonos_entity: media_player.living_room
@@ -92,7 +96,7 @@
           entity_id: group.joey_tracker
           to: 'not_home'
     action:
-      - service: notify.Jeeves
+      - service: notify.JeeveSlack
         data:
           title: '*Joey left the house*'
           message: "Joey seems to have left the house."
@@ -104,7 +108,7 @@
           entity_id: group.marit_tracker
           to: 'not_home'
     action:
-      - service: notify.Jeeves
+      - service: notify.JeeveSlack
         data:
           title: '*Marit left the house*'
           message: "Marit seems to have left the house."
@@ -240,6 +244,11 @@
         data:
          title: '*Marit has arrived*'
          message: "Hi Sir, Just wanted to inform you that Marit has just arrived home. Since it is dark in the house, we have turned on the light on her arrival, I'll take care of her."
+      - service: notify.JeevesSlack
+        data:
+         title: '*Marit has arrived*'
+         message: "Hi Sir, Just wanted to inform you that Marit has just arrived home. Since it is dark in the house, we have turned on the light on her arrival, I'll take care of her."
+      # - service: tts.google_say
       # - service: tts.google_say
       #   data:
       #     message: 'Welcome home, Marit'
@@ -496,6 +505,10 @@
         data:
           title: '*Light switch flipped*'
           message: "Hi Sir, just wanted to inform you that someone has flipped the switch from the Kledingkamer"
+      - service: notify.JeevesSlack
+            data:
+              title: '*Light switch flipped*'
+              message: "Hi Sir, just wanted to inform you that someone has flipped the switch from the Kledingkamer"         
 
   #Notify me when someone turns of the lights upstairs with the physical button - Office
   - alias: "Notification: Tell me when someone turns of the lights with the physical switch - Kledingkamer"
@@ -505,6 +518,10 @@
       to: 'unavailable'
     action: 
       - service: notify.Jeeves
+        data:
+          title: '*Light switch flipped*'
+          message: "Hi Sir, just wanted to inform you that someone has flipped the switch from the Office"
+      - service: notify.JeevesSlack
         data:
           title: '*Light switch flipped*'
           message: "Hi Sir, just wanted to inform you that someone has flipped the switch from the Office"
