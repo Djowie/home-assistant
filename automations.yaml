@@ -90,7 +90,6 @@
     trigger:
         - platform: state
           entity_id: joey_tracker
-          from: 'home'
           to: 'not_home'
     action:
       - service: notify.Jeeves
@@ -103,7 +102,6 @@
     trigger:
         - platform: state
           entity_id: marit_tracker
-          from: 'home'
           to: 'not_home'
     action:
       - service: notify.Jeeves
