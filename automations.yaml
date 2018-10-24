@@ -92,11 +92,11 @@
 # Inform me when I've left the home
   - alias: 'Rule: Inform me that Joey left the house'
     trigger:
-        - platform: state
-          entity_id: group.joey_tracker
-          to: 'not_home'
+      - platform: state
+        entity_id: group.joey_tracker
+        to: 'not_home'
     action:
-      - service: notify.JeeveSlack
+      - service: notify.JeevesSlack
         data:
           title: '*Joey left the house*'
           message: "Joey seems to have left the house."
@@ -104,11 +104,11 @@
 # Inform me when I've left the home
   - alias: 'Rule: Inform me that Marti left the house'
     trigger:
-        - platform: state
-          entity_id: group.marit_tracker
-          to: 'not_home'
+      - platform: state
+        entity_id: group.marit_tracker
+        to: 'not_home'
     action:
-      - service: notify.JeeveSlack
+      - service: notify.JeevesSlack
         data:
           title: '*Marit left the house*'
           message: "Marit seems to have left the house."
