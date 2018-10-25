@@ -65,9 +65,6 @@
     condition:
       condition: and 
       conditions:
-        - condition: time
-          after: '06:00'
-          before: '09:59'
         - condition: state
           entity_id: device_tracker.marits_iphone
           state: 'not_home'
