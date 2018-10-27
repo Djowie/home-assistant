@@ -62,12 +62,18 @@
         - platform: state
           entity_id: device_tracker.marits_iphone
           to: 'not_home'
+        - platform: state
+          entity_id: device_tracker.maritboonkiphone
+          to: 'not_home'
     condition:
       condition: and 
       conditions:
         - condition: state
           entity_id: device_tracker.marits_iphone
           state: 'not_home'
+        - platform: state
+          entity_id: device_tracker.maritboonkiphone
+          to: 'not_home'
         - condition: state
           entity_id: device_tracker.joeybakxsiphone
           state: 'not_home'

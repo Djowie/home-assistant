@@ -64,3 +64,4 @@ marit_tracker:
   control: hidden
   entities:
     - device_tracker.marits_iphone
+    - device_tracker.maritboonkiphone
