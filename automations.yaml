@@ -156,9 +156,6 @@
         - condition: state
           entity_id:  climate.living_room
           state: 'heat'
-        - condition: template
-          entity_id: climate.living_room
-          value_template: '{{ ( state.attributes.current_temperature ) < ( state.attributes.temperature ) }}'
     action:
       - service: climate.set_operation_mode
         data:
