@@ -92,6 +92,52 @@
       - service: ifttt.trigger
         data: {"event":"privacy_shutter_disabled"} 
 
+# Inform when the frontdoor is open when we've left the house
+  - alias: 'Automation: Inform on frontdoor breach'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.door_window_sensor_158d0001b86233 #frontdoor
+        to: 'on'
+        for:
+          minutes: 10
+    condition:
+      condition: and 
+      conditions:
+        - condition: state
+          entity_id: group.joey_tracker
+          state: 'not_home'
+        - condition: state
+          entity_id: group.marit_tracker
+          state: 'not_home'
+    action:
+      - service: notify.Jeeves
+        data:
+          title: '*Possible Breach*'
+          message: "The frontdoor seems to be open and nobody seems to be home."
+
+# Inform when the backdoor is open when we've left the house
+  - alias: 'Automation: Inform on backdoor breach'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.door_window_sensor_158d0001e7e252 #backdoor
+        to: 'on'
+        for:
+          minutes: 10
+    condition:
+      condition: and 
+      conditions:
+        - condition: state
+          entity_id: group.joey_tracker
+          state: 'not_home'
+        - condition: state
+          entity_id: group.marit_tracker
+          state: 'not_home'
+    action:
+      - service: notify.Jeeves
+        data:
+          title: '*Possible Breach*'
+          message: "The frontdoor seems to be open and nobody seems to be home."
+
 # Inform me when I've left the home
   - alias: 'Rule: Inform me that Joey left the house'
     trigger:
