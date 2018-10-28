@@ -143,31 +143,31 @@
 ###################
 
 # Automation: If the backdoor has been opened for x minutes or longer the NEST should be turned off.
-  - alias: 'Automation: Turn off heating, when backdoor is open'
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.door_window_sensor_158d0001e7e252 #backdoor
-        to: 'on'
-        for:
-          minutes: 20
-    condition:
-      condition: and 
-      conditions:
-        - condition: state
-          entity_id:  climate.living_room
-          state: 'heat'
-        - condition: template
-          entity_id: climate.living_room
-          value_template: '{{ state.attributes.current_temperature < state.attributes.temperature }}'
-    action:
-      - service: climate.set_operation_mode
-        data:
-          entity_id: "climate.living_room"
-          operation_mode: 'off'
-      - service: notify.Jeeves
-        data:
-          title: '*Climate control:* Heating turned off'
-          message: "The backdoor seems to be open while heating mode is enabled, we have turned this off due to saving some energy."
+  # - alias: 'Automation: Turn off heating, when backdoor is open'
+  #   trigger:
+  #     - platform: state
+  #       entity_id: binary_sensor.door_window_sensor_158d0001e7e252 #backdoor
+  #       to: 'on'
+  #       for:
+  #         minutes: 20
+  #   condition:
+  #     condition: and 
+  #     conditions:
+  #       - condition: state
+  #         entity_id:  climate.living_room
+  #         state: 'heat'
+  #       - condition: template
+  #         entity_id: climate.living_room
+  #         value_template: '{{ state.attributes.current_temperature < state.attributes.temperature }}'
+  #   action:
+  #     - service: climate.set_operation_mode
+  #       data:
+  #         entity_id: "climate.living_room"
+  #         operation_mode: 'off'
+  #     - service: notify.Jeeves
+  #       data:
+  #         title: '*Climate control:* Heating turned off'
+  #         message: "The backdoor seems to be open while heating mode is enabled, we have turned this off due to saving some energy."
 
 
 # Inform me when I've left the home
