@@ -42,201 +42,201 @@ homekit:
         - feature: play_pause
         - feature: play_stop
         - feature: toggle_mute
-    exclude_entities:
-      - binary_sensor.home_away
-      - sensor.living_room_thermostat_hvac_state
-      - sensor.living_room_thermostat_operation_mode
-      - binary_sensor.living_room_thermostat_online
-      - binary_sensor.living_room_thermostat_fan
-      - binary_sensor.living_room_thermostat_has_leaf
-      - binary_sensor.living_room_thermostat_is_locked
-      - binary_sensor.living_room_thermostat_is_using_emergency_heat
-      - device_tracker.canong_printer
-      - device_tracker.cscv248a032wfr168239470
-      - device_tracker.joey_bakxs_iphone
-      - device_tracker.joeybakxsiphone
-      - device_tracker.joeysipadpro
-      - device_tracker.joeysmbp
-      - device_tracker.joeysmbpold
-      - device_tracker.lumigatewayv3_miio78331287
-      - device_tracker.maritboonkiphone
-      - device_tracker.marits_iphone
-      - device_tracker.nest
-      - group.all_automations
-      - group.all_devices
-      - group.all_scripts
-      - group.color_lights
-      - group.hue_view
-      - group.hue
-      - group.travis
-      - script.flash_gateway1
-      - script.flash_gateway2
-      - script.flash_gateway3
-      - script.flash_gateway4
-      - script.sonos_say
-      - automation.alarm_automation
-      - automation.automation_inform_on_backdoor_breach
-      - automation.automation_inform_on_frontdoor_breach
-      - automation.automation_turn_off_heating_when_backdoor_is_open
-      - automation.get_the_status_of_all_the_lights
-      - automation.get_the_status_of_the_current_climate
-      - automation.no_motion_in_hall_turn_off_lights
-      - automation.notification_tell_me_when_someone_turns_of_the_lights_with_the_physical_switch__kledingkamer
-      - automation.rule_1_automatic_evening_lights
-      - automation.rule_21_automatically_turn_off_lights_when_sunlight_comes_in
-      - automation.rule_22_automatically_turn_off_lights_when_sunlight_comes_in
-      - automation.rule_2_light_on_in_the_morning
-      - automation.rule_5_let_me_know_marit_is_home_and_turn_on_the_light_if_it_isnt_already
-      - automation.rule_6_sun_has_set_text_to_speech
-      - automation.rule_7_hall_motion_lights_on
-      - automation.rule_8_trigger_away_mode_when_people_are_not_home
-      - automation.rule_inform_me_that_joey_left_the_house
-      - automation.rule_inform_me_that_marti_left_the_house
-      - automation.turn_off_kledingkamer_light_when_door_is_closed
-      - automation.turn_off_office_light_when_door_is_closed
-      - automation.turn_off_pantry_light_when_door_is_closed
-      - automation.turn_on_kledingkamer_light_when_door_is_closed
-      - automation.turn_on_office_light_when_door_is_closed
-      - automation.turn_on_pantry_light_when_door_is_open
+  exclude_entities:
+    - binary_sensor.home_away
+    - sensor.living_room_thermostat_hvac_state
+    - sensor.living_room_thermostat_operation_mode
+    - binary_sensor.living_room_thermostat_online
+    - binary_sensor.living_room_thermostat_fan
+    - binary_sensor.living_room_thermostat_has_leaf
+    - binary_sensor.living_room_thermostat_is_locked
+    - binary_sensor.living_room_thermostat_is_using_emergency_heat
+    - device_tracker.canong_printer
+    - device_tracker.cscv248a032wfr168239470
+    - device_tracker.joey_bakxs_iphone
+    - device_tracker.joeybakxsiphone
+    - device_tracker.joeysipadpro
+    - device_tracker.joeysmbp
+    - device_tracker.joeysmbpold
+    - device_tracker.lumigatewayv3_miio78331287
+    - device_tracker.maritboonkiphone
+    - device_tracker.marits_iphone
+    - device_tracker.nest
+    - group.all_automations
+    - group.all_devices
+    - group.all_scripts
+    - group.color_lights
+    - group.hue_view
+    - group.hue
+    - group.travis
+    - script.flash_gateway1
+    - script.flash_gateway2
+    - script.flash_gateway3
+    - script.flash_gateway4
+    - script.sonos_say
+    - automation.alarm_automation
+    - automation.automation_inform_on_backdoor_breach
+    - automation.automation_inform_on_frontdoor_breach
+    - automation.automation_turn_off_heating_when_backdoor_is_open
+    - automation.get_the_status_of_all_the_lights
+    - automation.get_the_status_of_the_current_climate
+    - automation.no_motion_in_hall_turn_off_lights
+    - automation.notification_tell_me_when_someone_turns_of_the_lights_with_the_physical_switch__kledingkamer
+    - automation.rule_1_automatic_evening_lights
+    - automation.rule_21_automatically_turn_off_lights_when_sunlight_comes_in
+    - automation.rule_22_automatically_turn_off_lights_when_sunlight_comes_in
+    - automation.rule_2_light_on_in_the_morning
+    - automation.rule_5_let_me_know_marit_is_home_and_turn_on_the_light_if_it_isnt_already
+    - automation.rule_6_sun_has_set_text_to_speech
+    - automation.rule_7_hall_motion_lights_on
+    - automation.rule_8_trigger_away_mode_when_people_are_not_home
+    - automation.rule_inform_me_that_joey_left_the_house
+    - automation.rule_inform_me_that_marti_left_the_house
+    - automation.turn_off_kledingkamer_light_when_door_is_closed
+    - automation.turn_off_office_light_when_door_is_closed
+    - automation.turn_off_pantry_light_when_door_is_closed
+    - automation.turn_on_kledingkamer_light_when_door_is_closed
+    - automation.turn_on_office_light_when_door_is_closed
+    - automation.turn_on_pantry_light_when_door_is_open
 
-# Enables configuration UI
-? config
+  # Enables configuration UI
+  ? config
 
-# Checks for available updates
-# Note: This component will send some information about your system to
-# the developers to assist with development of Home Assistant.
-# For more information, please see:
-# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
-? updater
+  # Checks for available updates
+  # Note: This component will send some information about your system to
+  # the developers to assist with development of Home Assistant.
+  # For more information, please see:
+  # https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+  ? updater
 
-# Discover some devices automatically
-# discovery:
+  # Discover some devices automatically
+  # discovery:
 
-# Allows you to issue voice commands from the frontend in enabled browsers
-? conversation
+  # Allows you to issue voice commands from the frontend in enabled browsers
+  ? conversation
 
-# Enables support for tracking state changes over time.
-? history
+  # Enables support for tracking state changes over time.
+  ? history
 
-# View all events in a logbook
-? logbook
+  # View all events in a logbook
+  ? logbook
 
-# Track the sun
-? sun
+  # Track the sun
+  ? sun
 
-? ios
+  ? ios
 
-#TV
-media_player:
-  - platform: braviatv
-    host: 192.168.2.25
+  #TV
+  media_player:
+    - platform: braviatv
+      host: 192.168.2.25
 
-# Hue motion sensor Config
-hue:
-  bridges:
-    - host: !secret hue_bridge_ip
-      allow_hue_groups: false
+  # Hue motion sensor Config
+  hue:
+    bridges:
+      - host: !secret hue_bridge_ip
+        allow_hue_groups: false
 
-sensor:
-  - platform: travisci
-    api_key: !secret travisci_key
-  - platform: hue
-    ip_address: !secret hue_bridge_ip
-    token: !secret hue_token
-  - platform: yr
-    name: Weather
-    monitored_conditions:
-      - symbol
-      - temperature
+  sensor:
+    - platform: travisci
+      api_key: !secret travisci_key
+    - platform: hue
+      ip_address: !secret hue_bridge_ip
+      token: !secret hue_token
+    - platform: yr
+      name: Weather
+      monitored_conditions:
+        - symbol
+        - temperature
 
-  - platform: template
-    sensors:
-      hall_motion:
-        friendly_name: "Hall Lux"
-        value_template: "{{ states.sensor.hue_motion__stairs_motion_bottom.attributes.lux }}"
-        unit_of_measurement: "lux"
+    - platform: template
+      sensors:
+        hall_motion:
+          friendly_name: "Hall Lux"
+          value_template: "{{ states.sensor.hue_motion__stairs_motion_bottom.attributes.lux }}"
+          unit_of_measurement: "lux"
 
-#Light sensors
-# sensor:
-#   - platform: rest
-#     resource: http://192.168.2.16/api/dsVKdJ0VQyC3RQS4zLgC9iUqqFpzj1idaATXeUcB/sensors/13
-#     value_template: '{{ value_json.state.lightlevel }}'
-#     unit_of_measurement: Lux
-#     name: 'Staircase'
+  #Light sensors
+  # sensor:
+  #   - platform: rest
+  #     resource: http://192.168.2.16/api/dsVKdJ0VQyC3RQS4zLgC9iUqqFpzj1idaATXeUcB/sensors/13
+  #     value_template: '{{ value_json.state.lightlevel }}'
+  #     unit_of_measurement: Lux
+  #     name: 'Staircase'
 
-#   - platform: rest
-#     resource: http://192.168.2.16/api/dsVKdJ0VQyC3RQS4zLgC9iUqqFpzj1idaATXeUcB/sensors/12
-#     value_template: '{{ value_json.state.temperature | float / 100 }}'
-#     unit_of_measurement: °C
-#     name: 'Sensor Staircase'
+  #   - platform: rest
+  #     resource: http://192.168.2.16/api/dsVKdJ0VQyC3RQS4zLgC9iUqqFpzj1idaATXeUcB/sensors/12
+  #     value_template: '{{ value_json.state.temperature | float / 100 }}'
+  #     unit_of_measurement: °C
+  #     name: 'Sensor Staircase'
 
-#   - platform: rest
-#     resource: http://192.168.2.16/api/dsVKdJ0VQyC3RQS4zLgC9iUqqFpzj1idaATXeUcB/sensors/15
-#     value_template: '{{ value_json.state.status }}'
-#     name: Light
-#     device_class: light
-#     scan_interval: 2
-#     name: 'Motion sensor staircase'
+  #   - platform: rest
+  #     resource: http://192.168.2.16/api/dsVKdJ0VQyC3RQS4zLgC9iUqqFpzj1idaATXeUcB/sensors/15
+  #     value_template: '{{ value_json.state.status }}'
+  #     name: Light
+  #     device_class: light
+  #     scan_interval: 2
+  #     name: 'Motion sensor staircase'
 
-nest:
-  client_id: !secret nest_clientid
-  client_secret: !secret nest_secret
+  nest:
+    client_id: !secret nest_clientid
+    client_secret: !secret nest_secret
 
-influxdb:
-  host: 127.0.0.1
-  tags:
-    instance: prod
-    source: hass
+  influxdb:
+    host: 127.0.0.1
+    tags:
+      instance: prod
+      source: hass
 
-# Text to speech
-tts:
-  platform: google
+  # Text to speech
+  tts:
+    platform: google
 
-xiaomi_aqara:
-  discovery_retry: 5
-  gateways:
-    - key: !secret xiaomi_key
+  xiaomi_aqara:
+    discovery_retry: 5
+    gateways:
+      - key: !secret xiaomi_key
 
-#iftt
-ifttt:
-  key: !secret ifttt_key
+  #iftt
+  ifttt:
+    key: !secret ifttt_key
 
-#presence_detector
-device_tracker:
-  - platform: unifi
-    host: 192.168.2.1
-    verify_ssl: false
-    username: admin
-    password: !secret device_tracker_unifi_password
-    track_new_devices: true
-    interval_seconds: 10
+  #presence_detector
+  device_tracker:
+    - platform: unifi
+      host: 192.168.2.1
+      verify_ssl: false
+      username: admin
+      password: !secret device_tracker_unifi_password
+      track_new_devices: true
+      interval_seconds: 10
 
-  # #OwnTracks GPS
-  # - platform: owntracks
-  #   max_gps_accuracy: 200
-  #   waypoints: True
-  #   waypoint_whitelist:
-  #     - mqttmarit
-  #     - mqttjoey
+    # #OwnTracks GPS
+    # - platform: owntracks
+    #   max_gps_accuracy: 200
+    #   waypoints: True
+    #   waypoint_whitelist:
+    #     - mqttmarit
+    #     - mqttjoey
 
-# Example configuration.yaml entry
-input_boolean:
-  alarm_triggered:
-    name: Alarm in action.
-    initial: off
-  alarm_armed:
-    name: Alarm armed
-    initial: off
-  # should be used to determine if morning light has already been triggered that day.
-  morning_light:
-    name: Morning light has been triggered
+  # Example configuration.yaml entry
+  input_boolean:
+    alarm_triggered:
+      name: Alarm in action.
+      initial: off
+    alarm_armed:
+      name: Alarm armed
+      initial: off
+    # should be used to determine if morning light has already been triggered that day.
+    morning_light:
+      name: Morning light has been triggered
 
-#Telegram Intergration
-telegram_bot:
-  - platform: polling
-    api_key: !secret telegram_apikey
-    allowed_chat_ids:
-      - 63738602
+  #Telegram Intergration
+  telegram_bot:
+    - platform: polling
+      api_key: !secret telegram_apikey
+      allowed_chat_ids:
+        - 63738602
 
   # Notify
 notify:
