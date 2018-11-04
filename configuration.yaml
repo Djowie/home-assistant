@@ -68,7 +68,6 @@ homekit:
 media_player:
   - platform: braviatv
     host: 192.168.2.25
-  - platform: sonos
 
 # Hue motion sensor Config
 hue:
