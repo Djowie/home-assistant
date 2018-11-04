@@ -284,6 +284,9 @@
       - condition: state
         entity_id: group.dining
         state: 'on'
+      - condition: time
+        after: '07:00'
+        before: '10:00'
       - condition: numeric_state
         entity_id: sensor.hue_motion__stairs_motion_bottom
         value_template: '{{ state.attributes.lux }}'
