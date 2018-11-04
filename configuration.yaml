@@ -127,8 +127,8 @@ influxdb:
     source: hass
 
 # Text to speech
-tts:
-  platform: google
+# tts:
+#   platform: google
 
 xiaomi_aqara:
   discovery_retry: 5
