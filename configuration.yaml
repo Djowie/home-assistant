@@ -36,6 +36,12 @@ homekit:
         - feature: play_pause
         - feature: play_stop
         - feature: toggle_mute
+    media_player.master_bedroom:
+      feature_list:
+        - feature: on_off
+        - feature: play_pause
+        - feature: play_stop
+        - feature: toggle_mute
 
 # Enables configuration UI
 ? config
@@ -65,9 +71,9 @@ homekit:
 ? ios
 
 #TV
-# media_player:
-#   - platform: braviatv
-#     host: 192.168.2.25
+media_player:
+  - platform: braviatv
+    host: 192.168.2.25
 
 # Hue motion sensor Config
 hue:
@@ -127,8 +133,8 @@ influxdb:
     source: hass
 
 # Text to speech
-# tts:
-#   platform: google
+tts:
+  platform: google
 
 xiaomi_aqara:
   discovery_retry: 5
