@@ -23,25 +23,6 @@ automation: !include automations.yaml
 ? logger
 # HomeKit setup
 homekit:
-  entity_config:
-    media_player.sony_bravia_tv:
-      feature_list:
-        - feature: on_off
-        - feature: play_pause
-        - feature: play_stop
-        - feature: toggle_mute
-    media_player.living_room:
-      feature_list:
-        - feature: on_off
-        - feature: play_pause
-        - feature: play_stop
-        - feature: toggle_mute
-    media_player.master_bedroom:
-      feature_list:
-        - feature: on_off
-        - feature: play_pause
-        - feature: play_stop
-        - feature: toggle_mute
   filter:
     exclude_entities:
       - binary_sensor.home_away
@@ -99,145 +80,162 @@ homekit:
       - automation.turn_on_kledingkamer_light_when_door_is_closed
       - automation.turn_on_office_light_when_door_is_closed
       - automation.turn_on_pantry_light_when_door_is_open
+  entity_config:
+    media_player.sony_bravia_tv:
+      feature_list:
+        - feature: on_off
+        - feature: play_pause
+        - feature: play_stop
+        - feature: toggle_mute
+    media_player.living_room:
+      feature_list:
+        - feature: play_pause
+        - feature: play_stop
+        - feature: toggle_mute
+    media_player.master_bedroom:
+      feature_list:
+        - feature: play_pause
+        - feature: play_stop
+        - feature: toggle_mute
 
-  # Enables configuration UI
-  ? config
+# Enables configuration UI
+? config
 
-  # Checks for available updates
-  # Note: This component will send some information about your system to
-  # the developers to assist with development of Home Assistant.
-  # For more information, please see:
-  # https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
-  ? updater
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+? updater
 
-  # Discover some devices automatically
-  # discovery:
+# Discover some devices automatically
+# discovery:
 
-  # Allows you to issue voice commands from the frontend in enabled browsers
-  ? conversation
+# Allows you to issue voice commands from the frontend in enabled browsers
+? conversation
 
-  # Enables support for tracking state changes over time.
-  ? history
+# Enables support for tracking state changes over time.
+? history
 
-  # View all events in a logbook
-  ? logbook
+# View all events in a logbook
+? logbook
 
-  # Track the sun
-  ? sun
+# Track the sun
+? sun
 
-  ? ios
+? ios
 
-  #TV
-  media_player:
-    - platform: braviatv
-      host: 192.168.2.25
+#TV
+media_player:
+  - platform: braviatv
+    host: 192.168.2.25
 
-  # Hue motion sensor Config
-  hue:
-    bridges:
-      - host: !secret hue_bridge_ip
-        allow_hue_groups: false
+# Hue motion sensor Config
+hue:
+  bridges:
+    - host: !secret hue_bridge_ip
+      allow_hue_groups: false
 
-  sensor:
-    - platform: travisci
-      api_key: !secret travisci_key
-    - platform: hue
-      ip_address: !secret hue_bridge_ip
-      token: !secret hue_token
-    - platform: yr
-      name: Weather
-      monitored_conditions:
-        - symbol
-        - temperature
+sensor:
+  - platform: travisci
+    api_key: !secret travisci_key
+  - platform: hue
+    ip_address: !secret hue_bridge_ip
+    token: !secret hue_token
+  - platform: yr
+    name: Weather
+    monitored_conditions:
+      - symbol
+      - temperature
 
-    - platform: template
-      sensors:
-        hall_motion:
-          friendly_name: "Hall Lux"
-          value_template: "{{ states.sensor.hue_motion__stairs_motion_bottom.attributes.lux }}"
-          unit_of_measurement: "lux"
+  - platform: template
+    sensors:
+      hall_motion:
+        friendly_name: "Hall Lux"
+        value_template: "{{ states.sensor.hue_motion__stairs_motion_bottom.attributes.lux }}"
+        unit_of_measurement: "lux"
 
-  #Light sensors
-  # sensor:
-  #   - platform: rest
-  #     resource: http://192.168.2.16/api/dsVKdJ0VQyC3RQS4zLgC9iUqqFpzj1idaATXeUcB/sensors/13
-  #     value_template: '{{ value_json.state.lightlevel }}'
-  #     unit_of_measurement: Lux
-  #     name: 'Staircase'
+#Light sensors
+# sensor:
+#   - platform: rest
+#     resource: http://192.168.2.16/api/dsVKdJ0VQyC3RQS4zLgC9iUqqFpzj1idaATXeUcB/sensors/13
+#     value_template: '{{ value_json.state.lightlevel }}'
+#     unit_of_measurement: Lux
+#     name: 'Staircase'
 
-  #   - platform: rest
-  #     resource: http://192.168.2.16/api/dsVKdJ0VQyC3RQS4zLgC9iUqqFpzj1idaATXeUcB/sensors/12
-  #     value_template: '{{ value_json.state.temperature | float / 100 }}'
-  #     unit_of_measurement: °C
-  #     name: 'Sensor Staircase'
+#   - platform: rest
+#     resource: http://192.168.2.16/api/dsVKdJ0VQyC3RQS4zLgC9iUqqFpzj1idaATXeUcB/sensors/12
+#     value_template: '{{ value_json.state.temperature | float / 100 }}'
+#     unit_of_measurement: °C
+#     name: 'Sensor Staircase'
 
-  #   - platform: rest
-  #     resource: http://192.168.2.16/api/dsVKdJ0VQyC3RQS4zLgC9iUqqFpzj1idaATXeUcB/sensors/15
-  #     value_template: '{{ value_json.state.status }}'
-  #     name: Light
-  #     device_class: light
-  #     scan_interval: 2
-  #     name: 'Motion sensor staircase'
+#   - platform: rest
+#     resource: http://192.168.2.16/api/dsVKdJ0VQyC3RQS4zLgC9iUqqFpzj1idaATXeUcB/sensors/15
+#     value_template: '{{ value_json.state.status }}'
+#     name: Light
+#     device_class: light
+#     scan_interval: 2
+#     name: 'Motion sensor staircase'
 
-  nest:
-    client_id: !secret nest_clientid
-    client_secret: !secret nest_secret
+nest:
+  client_id: !secret nest_clientid
+  client_secret: !secret nest_secret
 
-  influxdb:
-    host: 127.0.0.1
-    tags:
-      instance: prod
-      source: hass
+influxdb:
+  host: 127.0.0.1
+  tags:
+    instance: prod
+    source: hass
 
-  # Text to speech
-  tts:
-    platform: google
+# Text to speech
+tts:
+  platform: google
 
-  xiaomi_aqara:
-    discovery_retry: 5
-    gateways:
-      - key: !secret xiaomi_key
+xiaomi_aqara:
+  discovery_retry: 5
+  gateways:
+    - key: !secret xiaomi_key
 
-  #iftt
-  ifttt:
-    key: !secret ifttt_key
+#iftt
+ifttt:
+  key: !secret ifttt_key
 
-  #presence_detector
-  device_tracker:
-    - platform: unifi
-      host: 192.168.2.1
-      verify_ssl: false
-      username: admin
-      password: !secret device_tracker_unifi_password
-      track_new_devices: true
-      interval_seconds: 10
+#presence_detector
+device_tracker:
+  - platform: unifi
+    host: 192.168.2.1
+    verify_ssl: false
+    username: admin
+    password: !secret device_tracker_unifi_password
+    track_new_devices: true
+    interval_seconds: 10
 
-    # #OwnTracks GPS
-    # - platform: owntracks
-    #   max_gps_accuracy: 200
-    #   waypoints: True
-    #   waypoint_whitelist:
-    #     - mqttmarit
-    #     - mqttjoey
+  # #OwnTracks GPS
+  # - platform: owntracks
+  #   max_gps_accuracy: 200
+  #   waypoints: True
+  #   waypoint_whitelist:
+  #     - mqttmarit
+  #     - mqttjoey
 
-  # Example configuration.yaml entry
-  input_boolean:
-    alarm_triggered:
-      name: Alarm in action.
-      initial: off
-    alarm_armed:
-      name: Alarm armed
-      initial: off
-    # should be used to determine if morning light has already been triggered that day.
-    morning_light:
-      name: Morning light has been triggered
+# Example configuration.yaml entry
+input_boolean:
+  alarm_triggered:
+    name: Alarm in action.
+    initial: off
+  alarm_armed:
+    name: Alarm armed
+    initial: off
+  # should be used to determine if morning light has already been triggered that day.
+  morning_light:
+    name: Morning light has been triggered
 
-  #Telegram Intergration
-  telegram_bot:
-    - platform: polling
-      api_key: !secret telegram_apikey
-      allowed_chat_ids:
-        - 63738602
+#Telegram Intergration
+telegram_bot:
+  - platform: polling
+    api_key: !secret telegram_apikey
+    allowed_chat_ids:
+      - 63738602
 
   # Notify
 notify:
