@@ -65,9 +65,9 @@ homekit:
 ? ios
 
 #TV
-media_player:
-  - platform: braviatv
-    host: 192.168.2.25
+# media_player:
+#   - platform: braviatv
+#     host: 192.168.2.25
 
 # Hue motion sensor Config
 hue:
