@@ -271,10 +271,6 @@
         after: '07:00'
         before: '11:00'
       - condition: numeric_state
-        entity_id: sensor.hue_motion__stairs_motion_bottom
-        value_template: '{{ state.attributes.lux }}'
-        above: 10
-      - condition: numeric_state
         entity_id: sensor.illumination_7811dcb0693d
         above: 750
     action: 
