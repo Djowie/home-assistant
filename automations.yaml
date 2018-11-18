@@ -225,6 +225,9 @@
       - condition: state
         entity_id: group.dining
         state: 'off'
+      - condition: state
+        entity_id: input_boolean.morning_light
+        state: 'off'
       - condition: time
         after: '05:00'
         before: '10:00'
@@ -243,6 +246,9 @@
           entity_id: light.ikea_white__pantry
           brightness_pct: 50
           transition: 1600
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.morning_light           
       - service: ifttt.trigger
         data: {"event":"privacy_shutter_enabled"}
       - service: notify.Jeeves
@@ -272,12 +278,30 @@
       - service: light.turn_off
         entity_id:  group.all_lights
 
+#reset boolean morning light
+  - alias: 'Reset morning light boolean'
+    trigger:
+        platform: time
+        # When 'at' is used, you cannot also match on hour, minute, seconds.
+        # Military time format.
+        at: '10:00:00'
+    condition:
+     condition: and 
+     conditions:
+      - condition: state
+        entity_id: input_boolean.morning_light
+        state: 'on'
+    action: 
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.morning_light 
+
 # Automatically turn off the lights in the kitchen and dining, when it's after 09:00 and it's light outside.
   - alias: 'Rule 2.2: Automatically turn off lights when sunlight comes in'
     trigger:
-        platform: numeric_state
-        entity_id: sensor.illumination_7811dcb0693d
-        above: 750
+      platform: numeric_state
+      entity_id: sensor.illumination_7811dcb0693d
+      above: 750
     condition:
      condition: and 
      conditions:
@@ -298,9 +322,9 @@
 #Notify me when Marit is home after work, don't run this during the night because of WiFi presence
   - alias: "Rule 5: Let me know Marit is home, and turn on the light if it isn't already."
     trigger:
-        platform: state
-        entity_id: group.marit_tracker
-        to: 'home'
+      platform: state
+      entity_id: group.marit_tracker
+      to: 'home'
     condition:
       condition: and 
       conditions:
