@@ -244,8 +244,11 @@
       - service: light.turn_on
         data:
           entity_id: light.ikea_white__pantry
-          brightness_pct: 50
-          transition: 1600
+          brightness_pct: 40
+      - service: light.turn_on
+        data:
+          entity_id: group.kitchen
+          brightness_pct: 40           
       - service: input_boolean.turn_on
         data:
           entity_id: input_boolean.morning_light           
