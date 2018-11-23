@@ -19,8 +19,8 @@ automation: !include automations.yaml
 # introduction:
 
 # Enables the frontend
-? frontend
-? logger
+frontend:
+logger:
 # HomeKit setup
 homekit:
   filter:
@@ -99,31 +99,31 @@ homekit:
         - feature: toggle_mute
 
 # Enables configuration UI
-? config
+config:
 
 # Checks for available updates
 # Note: This component will send some information about your system to
 # the developers to assist with development of Home Assistant.
 # For more information, please see:
 # https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
-? updater
+updater:
 
 # Discover some devices automatically
 # discovery:
 
 # Allows you to issue voice commands from the frontend in enabled browsers
-? conversation
+conversation:
 
 # Enables support for tracking state changes over time.
-? history
+history:
 
 # View all events in a logbook
-? logbook
+logbook:
 
 # Track the sun
-? sun
+sun:
 
-? ios
+ios:
 
 #TV
 media_player:
@@ -248,6 +248,10 @@ notify:
     api_key: !secret slack_apikey
     default_channel: "#general"
 
+camera:
+  - platform: ffmpeg
+    name: Utility Room
+    input: -rtsp_transport tcp -i rtsp://192.168.2.107:554/live/ch00_0
 # # MQTT
 # mqtt:
 #   broker: 192.168.2.1
