@@ -139,6 +139,9 @@ hue:
 sensor:
   - platform: travisci
     api_key: !secret travisci_key
+  - platform: hue
+    ip_address: !secret hue_bridge_ip
+    token: !secret hue_token
   - platform: yr
     name: Weather
     monitored_conditions:
@@ -245,10 +248,10 @@ notify:
     api_key: !secret slack_apikey
     default_channel: "#general"
 
-# camera:
-#   - platform: ffmpeg
-#     name: Utility Room
-#     input: -rtsp_transport tcp -i rtsp://192.168.2.107:554/live/ch00_0
+camera:
+  - platform: ffmpeg
+    name: Utility Room
+    input: -rtsp_transport tcp -i rtsp://192.168.2.107:554/live/ch00_0
 # # MQTT
 # mqtt:
 #   broker: 192.168.2.1
