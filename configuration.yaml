@@ -139,9 +139,6 @@ hue:
 sensor:
   - platform: travisci
     api_key: !secret travisci_key
-  - platform: hue
-    ip_address: !secret hue_bridge_ip
-    token: !secret hue_token
   - platform: yr
     name: Weather
     monitored_conditions:
