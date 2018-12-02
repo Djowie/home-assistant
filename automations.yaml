@@ -330,6 +330,9 @@
         - condition: time
           after: '13:00'
           before: '23:59'
+        - condition: state
+          entity_id: group.joey_tracker
+          state: 'not home'
         - condition: time
           after: '08:00'
           before: '01:00'
@@ -352,10 +355,6 @@
         data:
          title: '*Marit has arrived*'
          message: "Hi Sir, Just wanted to inform you that Marit has just arrived home. Since it is dark in the house, we have turned on the light on her arrival, I'll take care of her."
-      # - service: tts.google_say
-      # - service: tts.google_say
-      #   data:
-      #     message: 'Welcome home, Marit'
 
 #Get me the status of all the lights via Telegram
   - alias: 'Get the status of all the lights.'
