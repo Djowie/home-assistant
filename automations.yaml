@@ -328,7 +328,7 @@
       condition: and 
       conditions:
         - condition: time
-          after: '09:00'
+          after: '13:00'
           before: '23:59'
         - condition: time
           after: '08:00'
