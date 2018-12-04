@@ -13,8 +13,7 @@
   - alias: 'Rule 1: Automatic evening lights'
     trigger:
         platform: numeric_state
-        entity_id: sensor.hue_motion__stairs_motion_bottom
-        value_template: "{{ state.attributes.lux }}"
+        entity_id:  sensor.hall_motion
         below: 2
     condition:
      condition: and 
@@ -232,8 +231,7 @@
         after: '05:00'
         before: '10:00'
       - condition: numeric_state
-        entity_id: sensor.hue_motion__stairs_motion_bottom
-        value_template: '{{ state.attributes.lux }}'
+        entity_id:  sensor.hall_motion
         below: 8
     action:
       - service: light.turn_on
@@ -311,8 +309,7 @@
         after: '07:00'
         before: '10:00'
       - condition: numeric_state
-        entity_id: sensor.hue_motion__stairs_motion_bottom
-        value_template: '{{ state.attributes.lux }}'
+        entity_id:  sensor.hall_motion
         above: 10
     action: 
       - service: light.turn_off
@@ -337,8 +334,7 @@
           after: '08:00'
           before: '01:00'
         - condition: numeric_state
-          entity_id: sensor.hue_motion__stairs_motion_bottom
-          value_template: '{{ state.attributes.lux }}'
+          entity_id:  sensor.hall_motion
           below: 10
         - condition: numeric_state
           entity_id: sensor.illumination_7811dcb0693d
