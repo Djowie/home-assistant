@@ -90,6 +90,10 @@
         entity_id: media_player.sony_bravia_tv
       - service: ifttt.trigger
         data: {"event":"privacy_shutter_disabled"} 
+      - service: climate.set_temperature
+        data:
+          entity_id: "climate.living_room"
+          temperature: 16
 
 # Inform when the frontdoor is open when we've left the house
   - alias: 'Automation: Inform on frontdoor breach'
