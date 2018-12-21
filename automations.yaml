@@ -355,6 +355,7 @@
         data:
          title: '*Marit has arrived*'
          message: "Hi Sir, Just wanted to inform you that Marit has just arrived home. Since it is dark in the house, we have turned on the light on her arrival, I'll take care of her."
+      - service: script.enable_shutter
 
 #Get me the status of all the lights via Telegram
   - alias: 'Get the status of all the lights.'
@@ -532,8 +533,7 @@
           volume: 0.2
           message: "Welcome home, Joey!!"
           delay: 00:00:05
-      - service: ifttt.trigger
-        data: {"event":"privacy_shutter_enabled"}
+      - service: script.enable_shutter
       - service: notify.Jeeves
         data:
           title: '*Camera Shutter C6T - Enabled*'
@@ -552,6 +552,7 @@
           after: '09:00'
           before: '23:59'
     action:
+      - service: script.enable_shutter
       - service: notify.Jeeves
         data:
           title: '*Marit is home*'
