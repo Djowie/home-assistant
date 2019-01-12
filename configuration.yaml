@@ -151,6 +151,7 @@ sensor:
   - platform: template
     sensors:
       hall_motion:
+        entity_id: sensor.time
         friendly_name: "Hall Lux"
         value_template: "{{ states.sensor.hue_motion__stairs_motion_bottom.attributes.lux }}"
         unit_of_measurement: "lux"
