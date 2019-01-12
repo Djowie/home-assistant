@@ -109,7 +109,7 @@ config:
 updater:
 
 # Discover some devices automatically
-# discovery:
+discovery:
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
@@ -136,6 +136,9 @@ hue:
     - host: !secret hue_bridge_ip
       allow_hue_groups: false
 
+binary_sensor:
+  - platform: hue
+
 sensor:
   - platform: travisci
     api_key: !secret travisci_key
@@ -151,9 +154,8 @@ sensor:
   - platform: template
     sensors:
       hall_motion:
-        entity_id: sensor.time
         friendly_name: "Hall Lux"
-        value_template: "{{ states.sensor.hue_motion__stairs_motion_bottom.attributes.lux }}"
+        value_template: '{{state_attr("binary_sensor.hall_motion_sensor", "lx")}}'
         unit_of_measurement: "lux"
 
 #Light sensors

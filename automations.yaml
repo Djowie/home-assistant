@@ -528,7 +528,7 @@
           message: "You've arrived home."
       # - service: tts.google_say
       - service: script.sonos_say
-        data:
+        data_template:
           sonos_entity: media_player.living_room
           volume: 0.2
           message: "Welcome home, Joey!!"
@@ -559,7 +559,7 @@
           message: "Marit arrived home."
       # - service: tts.google_say
       - service: script.sonos_say
-        data:
+        data_template:
           sonos_entity: media_player.living_room
           volume: 0.2
           message: "Welcome home, Marit!!"
