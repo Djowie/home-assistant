@@ -220,7 +220,7 @@
   - alias: 'Rule 2: Light on in the morning'
     trigger:
         platform: state
-        entity_id: sensor.hue_motion__stairs_motion_bottom
+        entity_id:  binary_sensor.hall_motion_sensor
         to: 'on'
     condition:
      condition: and 
@@ -573,7 +573,7 @@
   - alias: 'Rule 7: Hall motion, lights on'
     trigger:
       - platform: state
-        entity_id: sensor.hue_motion__stairs_motion_bottom
+        entity_id:  binary_sensor.hall_motion_sensor
         to: 'on'
     condition:
         condition: and 
@@ -590,7 +590,7 @@
   - alias: No motion in hall, turn off lights
     trigger:
       platform: state
-      entity_id: sensor.hue_motion__stairs_motion_bottom
+      entity_id:  binary_sensor.hall_motion_sensor
       to: 'off'
       for:
         minutes: 5
