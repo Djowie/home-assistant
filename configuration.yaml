@@ -12,15 +12,17 @@ homeassistant:
   time_zone: Europe/Amsterdam
   customize: !include customize.yaml
 script: !include scripts.yaml
-group: !include groups.yaml
 automation: !include automations.yaml
 
+# lovelace:
+#   mode: yaml
+
 # Show links to resources in log and frontend
-# introduction:
+logger:
 
 # Enables the frontend
 frontend:
-logger:
+
 # HomeKit setup
 homekit:
   filter:
@@ -47,10 +49,7 @@ homekit:
       - group.all_automations
       - group.all_devices
       - group.all_scripts
-      - group.color_lights
-      - group.hue_view
-      - group.hue
-      - group.travis
+      - group.all_lights
       - script.flash_gateway1
       - script.flash_gateway2
       - script.flash_gateway3
@@ -63,7 +62,7 @@ homekit:
       - automation.get_the_status_of_all_the_lights
       - automation.get_the_status_of_the_current_climate
       - automation.no_motion_in_hall_turn_off_lights
-      - automation.notification_tell_me_when_someone_turns_of_the_lights_with_the_physical_switch__kledingkamer
+      - automation.notification_tell_me_when_someone_turns_of_the_lights_with_the_physical_switch_kledingkamer
       - automation.rule_1_automatic_evening_lights
       - automation.rule_21_automatically_turn_off_lights_when_sunlight_comes_in
       - automation.rule_22_automatically_turn_off_lights_when_sunlight_comes_in
@@ -124,17 +123,10 @@ logbook:
 sun:
 
 ios:
-
 #TV
 media_player:
   - platform: braviatv
     host: 192.168.2.25
-
-# Hue motion sensor Config
-hue:
-  bridges:
-    - host: !secret hue_bridge_ip
-      allow_hue_groups: false
 
 binary_sensor:
   - platform: hue
@@ -239,17 +231,19 @@ telegram_bot:
     api_key: !secret telegram_apikey
     allowed_chat_ids:
       - 63738602
+      
+custom_updater:
 
   # Notify
 notify:
-  - name: Jeeves
+  - name: jeeves
     platform: telegram
     chat_id: !secret telegram_chatid
   #https://www.home-assistant.io/components/notify.slack/
-  - name: JeevesSlack
+  - name: jeevesslack
     platform: slack
     api_key: !secret slack_apikey
-    default_channel: "#general"
+    default_channel: '#general'
 
 # camera:
 #   - platform: ffmpeg

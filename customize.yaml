@@ -1,98 +1,14 @@
-binary_sensor.living_room_thermostat_is_using_emergency_heat:
+device_tracker.78_11_dc_36_e1_d4:
   hidden: true
-light.gateway_light_7811dcb0693d:
-  friendly_name: Xiaomi Gateway light
-binary_sensor.door_window_sensor_158d0001b78233:
-  friendly_name: Pantry door
-binary_sensor.door_window_sensor_158d0001bf47ec:
-  friendly_name: Kledingkamer door
-binary_sensor.door_window_sensor_158d0001b86233:
-  friendly_name: Frontdoor
-binary_sensor.door_window_sensor_158d000201132e:
-  friendly_name: Officedoor
-binary_sensor.door_window_sensor_158d0001e7e252:
-  friendly_name: Backdoor
-binary_sensor.door_window_sensor_158d0001e5d475:
-  friendly_name: Hall
-sensor.illumination_7811dcb0693d:
-  friendly_name: Xiaomi Gateway Lux
-binary_sensor.living_room_thermostat_fan:
-  hidden: true
-sensor.hue_dimmer_switch_1:
-  friendly_name: Hue switch
-binary_sensor.living_room_thermostat_has_leaf:
-  custom_ui_state_card: Nest Thermostat
-  hidden: true
-sensor.living_room_thermostat_hvac_state:
-  hidden: true
-binary_sensor.living_room_thermostat_is_locked:
-  hidden: true
-sensor.living_room_thermostat_humidity:
-  friendly_name: Living Room humidity
-sensor.living_room_thermostat_target:
-  hidden: true
-sensor.living_room_thermostat_temperature:
-  hidden: true
-sensor.living_room_thermostat_operation_mode:
-  hidden: true
-binary_sensor.living_room_thermostat_online:
-  hidden: true
-automation.get_the_status_of_all_the_lights: {}
-group.color_lights:
-  hidden: true
-group.dining:
-  hidden: true
-group.kitchen:
-  hidden: true
-script.flash_gateway1:
-  hidden: true
-script.flash_gateway2:
-  hidden: true
-script.flash_gateway3:
-  hidden: true
-script.flash_gateway4:
-  hidden: true
-zone.home:
-  track_ios: true
-device_tracker.eigenaarpc:
-  hidden: true
-device_tracker.honor_6c_pro:
-  hidden: true
-device_tracker.iphone:
-  hidden: true
-device_tracker.iphonevaniris:
-  hidden: true
-device_tracker.iphonevistrator:
-  hidden: true
-sensor.home_eta:
-  hidden: true
-device_tracker.ipodtouch:
-  hidden: true
-device_tracker.macbookpro:
-  hidden: true
-device_tracker.sammy:
-  hidden: true
-binary_sensor.home_away:
-  hidden: true
-device_tracker.mqttjoey_mqttjoey:
-  hidden: true
-device_tracker.mqttjoey_33a7a77907564a9bb04a165633edad16:
-  hidden: true
-device_tracker.mqttmarit_maritiphone:
-  hidden: true
-device_tracker.joeybakxsiphone2:
-  hidden: true
-device_tracker.joeybaksiphone2:
-  friendly_name: Joey Bakx iPhone
-device_tracker.cscv248a032wfr168239470:
+device_tracker.cs_cv248_a0_32wfr_168239470:
   hidden: true
 device_tracker.canong_printer:
   hidden: true
-device_tracker.joeysmbp:
+device_tracker.sonoszp:
   hidden: true
-device_tracker.joeysipadpro:
+light.discoagroup:
   hidden: true
-device_tracker.lumigatewayv3_miio78331287:
+light.discoagroupeven:
   hidden: true
-device_tracker.nest:
+light.discoagroupodd:
   hidden: true

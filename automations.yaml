@@ -5,10 +5,10 @@
         entity_id: updater.updater
     action:
       service: notify.jeeves
-      data_template: 
+      data: 
         title: 'New Home Assistant Release'
         message: "Home Assistant  {{ states.updater.updater.state }}  is now available."
-
+          
 #rule 1, automatic evening lights
   - alias: 'Rule 1: Automatic evening lights'
     trigger:
@@ -19,10 +19,10 @@
      condition: and 
      conditions:
       - condition: state
-        entity_id: group.dining
+        entity_id: light.dining
         state: 'off'
       - condition: state
-        entity_id: light.hue_lightstrip_plus__tv
+        entity_id: light.hue_lightstrip_plus_tv
         state: 'off'
       - condition: time
         after: '17:00'
@@ -30,14 +30,14 @@
     action:
       - service: light.turn_on
         data:
-          entity_id: light.ikea__livingroom, light.hue_lightstrip_plus__tv
+          entity_id: light.ikea_livingroom, light.hue_lightstrip_plus_tv
           brightness: 140
           transition: 1800
-      - service: notify.Jeeves
+      - service: notify.jeeves
         data:
           title: '*Sunset*'
           message: "I will start putting on the lights in the livingroom. Lux in the hall has dropped below 2 and the lights are currently still turned off"
-      - service: notify.JeevesSlack
+      - service: notify.jeevesslack
         data:
           title: '*Sunset*'
           message: "I will start putting on the lights in the livingroom. Lux in the hall has dropped below 2 and the lights are currently still turned off"
@@ -59,17 +59,11 @@
           entity_id: device_tracker.joey_bakxs_iphone
           to: 'not_home'
         - platform: state
-          entity_id: device_tracker.marits_iphone
-          to: 'not_home'
-        - platform: state
           entity_id: device_tracker.maritboonkiphone
           to: 'not_home'
     condition:
       condition: and 
       conditions:
-        - condition: state
-          entity_id: device_tracker.marits_iphone
-          state: 'not_home'
         - condition: state
           entity_id: device_tracker.maritboonkiphone
           state: 'not_home'
@@ -80,7 +74,7 @@
           entity_id: device_tracker.joey_bakxs_iphone
           state: 'not_home'
     action:
-      - service: notify.Jeeves
+      - service: notify.jeeves
         data:
           title: '*Away*'
           message: "You all seem to have left the house, I will make sure everything will be ready when you come back."
@@ -107,13 +101,16 @@
       condition: and 
       conditions:
         - condition: state
-          entity_id: group.joey_tracker
+          entity_id: device_tracker.maritboonkiphone
           state: 'not_home'
         - condition: state
-          entity_id: group.marit_tracker
+          entity_id: device_tracker.joeybakxsiphone
+          state: 'not_home'
+        - condition: state
+          entity_id: device_tracker.joey_bakxs_iphone
           state: 'not_home'
     action:
-      - service: notify.Jeeves
+      - service: notify.jeeves
         data:
           title: '*Possible Breach*'
           message: "The frontdoor seems to be open and nobody seems to be home."
@@ -130,13 +127,16 @@
       condition: and 
       conditions:
         - condition: state
-          entity_id: group.joey_tracker
+          entity_id: device_tracker.maritboonkiphone
           state: 'not_home'
         - condition: state
-          entity_id: group.marit_tracker
+          entity_id: device_tracker.joeybakxsiphone
+          state: 'not_home'
+        - condition: state
+          entity_id: device_tracker.joey_bakxs_iphone
           state: 'not_home'
     action:
-      - service: notify.Jeeves
+      - service: notify.jeeves
         data:
           title: '*Possible Breach*'
           message: "The frontdoor seems to be open and nobody seems to be home."
@@ -164,7 +164,7 @@
         data:
           entity_id: "climate.living_room"
           operation_mode: 'off'
-      - service: notify.Jeeves
+      - service: notify.jeeves
         data:
           title: '*Climate control:* Heating turned off'
           message: "The backdoor seems to be open while heating mode is enabled, we have turned this off due to saving some energy."
@@ -174,10 +174,10 @@
   - alias: 'Rule: Inform me that Joey left the house'
     trigger:
       - platform: state
-        entity_id: group.joey_tracker
+        entity_id: device_tracker.joey_bakxs_iphone
         to: 'not_home'
     action:
-      - service: notify.JeevesSlack
+      - service: notify.jeevesslack
         data:
           title: '*Joey left the house*'
           message: "Joey seems to have left the house."
@@ -186,10 +186,10 @@
   - alias: 'Rule: Inform me that Marti left the house'
     trigger:
       - platform: state
-        entity_id: group.marit_tracker
+        entity_id: device_tracker.maritboksiphone
         to: 'not_home'
     action:
-      - service: notify.JeevesSlack
+      - service: notify.jeevesslack
         data:
           title: '*Marit left the house*'
           message: "Marit seems to have left the house."
@@ -205,7 +205,7 @@
     action:
       # - service: light.turn_on
       #   data:
-      #     entity_id: group.dining, light.hue_lightstrip_plus__tv
+      #     entity_id: light.dining, light.hue_lightstrip_plus_tv
       #     brightness: 120
       #     transition: 1800
       # - service: tts.google_say
@@ -226,7 +226,7 @@
      condition: and 
      conditions:
       - condition: state
-        entity_id: group.dining
+        entity_id: light.dining
         state: 'off'
       - condition: state
         entity_id: input_boolean.morning_light
@@ -240,23 +240,23 @@
     action:
       - service: light.turn_on
         data:
-          entity_id: group.dining
+          entity_id: light.dining
           brightness_pct: 75
           transition: 1600
       - service: light.turn_on
         data:
-          entity_id: light.ikea_white__pantry
+          entity_id: light.ikea_white_pantry
           brightness_pct: 40
       - service: light.turn_on
         data:
-          entity_id: group.kitchen
+          entity_id: light.kitchen
           brightness_pct: 40           
       - service: input_boolean.turn_on
         data:
           entity_id: input_boolean.morning_light           
       - service: ifttt.trigger
         data: {"event":"privacy_shutter_enabled"}
-      - service: notify.Jeeves
+      - service: notify.jeeves
         data:
           title: '*Morning light*'
           message: "Morning light has been triggered, camera has been deactivated."
@@ -307,7 +307,7 @@
      condition: and 
      conditions:
       - condition: state
-        entity_id: group.dining
+        entity_id: light.dining
         state: 'on'
       - condition: time
         after: '07:00'
@@ -317,13 +317,13 @@
         above: 10
     action: 
       - service: light.turn_off
-        entity_id: group.dining
+        entity_id: light.dining
 
 #Notify me when Marit is home after work, don't run this during the night because of WiFi presence
   - alias: "Rule 5: Let me know Marit is home, and turn on the light if it isn't already."
     trigger:
       platform: state
-      entity_id: group.marit_tracker
+      entity_id: device_tracker.maritboonkiphone
       to: 'home'
     condition:
       condition: and 
@@ -332,8 +332,11 @@
           after: '13:00'
           before: '23:59'
         - condition: state
-          entity_id: group.joey_tracker
-          state: 'not home'
+          entity_id: device_tracker.joeybakxsiphone
+          state: 'not_home'
+        - condition: state
+          entity_id: device_tracker.joey_bakxs_iphone
+          state: 'not_home'
         - condition: time
           after: '08:00'
           before: '01:00'
@@ -346,12 +349,12 @@
     action: 
       - service: light.turn_on
         data:
-          entity_id: group.dining, light.ikea__livingroom, light.hue_lightstrip_plus__tv
-      - service: notify.Jeeves
+          entity_id: light.dining, light.ikea_livingroom, light.hue_lightstrip_plus_tv
+      - service: notify.jeeves
         data:
          title: '*Marit has arrived*'
          message: "Hi Sir, Just wanted to inform you that Marit has just arrived home. Since it is dark in the house, we have turned on the light on her arrival, I'll take care of her."
-      - service: notify.JeevesSlack
+      - service: notify.jeevesslack
         data:
          title: '*Marit has arrived*'
          message: "Hi Sir, Just wanted to inform you that Marit has just arrived home. Since it is dark in the house, we have turned on the light on her arrival, I'll take care of her."
@@ -366,27 +369,27 @@
       event_data:
         command: '/lights'
     action:
-      - service: notify.Jeeves
+      - service: notify.jeeves
         data:
           message: "Hi Sir, 
           \n  
           The current status of your lights are: 
           \n 
-          *Livingroom:* {{ states.light.ikea__livingroom.state }}
+          *Livingroom:* {{ states.light.ikea_livingroom.state }}
           \n 
-          *Dining:* Left: {{ states.light.ikea_color__dining_l.state }}, Right: {{ states.light.ikea_color__dining_r.state }}
+          *Dining:* Left: {{ states.light.ikea_color_dining_l.state }}, Right: {{ states.light.ikea_color_dining_r.state }}
           \n 
-          *Pantry:* {{ states.light.ikea_white__pantry.state }} 
+          *Pantry:* {{ states.light.ikea_white_pantry.state }} 
           \n 
           *Hallway:* {{ states.light.hall.state }}
           \n 
-          *Clothing:* {{ states.light.hue_white__kledingkamer.state }}
+          *Clothing:* {{ states.light.hue_white_kledingkamer.state }}
           \n 
           *First floor hall:* {{ states.light.hallway_1st_floor.state	}}
           \n 
-          *Kitchen:* Left: {{ states.light.dimmable_light__ikea_l.state }}, Right: {{ states.light.dimmable_light__ikea_r.state }}
+          *Kitchen:* Left: {{ states.light.dimmable_light_ikea_l.state }}, Right: {{ states.light.dimmable_light_ikea_r.state }}
           \n 
-          *TV wall:* {{ states.light.hue_lightstrip_plus__tv.state	}}"
+          *TV wall:* {{ states.light.hue_lightstrip_plus_tv.state	}}"
   
   #turn off pantry light when door is closed.
   - alias: 'Turn off pantry light when door is closed.'
@@ -397,7 +400,7 @@
       to: 'off'
     action: 
       service: light.turn_off
-      entity_id: light.hue_white_lamp__pantry
+      entity_id: light.hue_white_lamp_pantry
 
   #turn on pantry light when door is open.
   - alias: 'Turn on pantry light when door is open.'
@@ -408,7 +411,7 @@
       to: 'on'
     action: 
       service: light.turn_on
-      entity_id: light.hue_white_lamp__pantry
+      entity_id: light.hue_white_lamp_pantry
 
  #turn off kledingkamer light when door is closed.
   - alias: 'Turn off kledingkamer light when door is closed.'
@@ -419,7 +422,7 @@
       to: 'off'
     action: 
       service: light.turn_off
-      entity_id: light.hue_white__kledingkamer
+      entity_id: light.hue_white_kledingkamer
 
   #turn on kledingkamer light when door is closed.
   - alias: 'Turn on kledingkamer light when door is closed.'
@@ -430,7 +433,7 @@
       to: 'on'
     action: 
       service: light.turn_on
-      entity_id: light.hue_white__kledingkamer
+      entity_id: light.hue_white_kledingkamer
 
 #turn off office light when door is closed.
   - alias: 'Turn off office light when door is closed.'
@@ -482,38 +485,38 @@
       - service: script.turn_on
         data:
           entity_id: script.flash_gateway2
-      - service: notify.Jeeves
+      - service: notify.jeeves
         data:
           message: "Your alarm has been triggered, please call the authorities"
 
 #Get me the status of the current climate via Telegram
-  - alias: 'Get the status of the current climate.'
-    hide_entity: true
-    trigger:
-      platform: event
-      event_type: telegram_command
-      event_data:
-        command: '/climate'
-    action:
-      - service: notify.Jeeves
-        data_template:
-          message: "Hi Sir, 
-          \n  
-          The current temperature in your living room is: 
-          \n 
-          *Kitchenlight:* {{ states.climate.living_room.attributes.current_temperature }} 
-          \n
-          *Hall:* {{ states.sensor.hue_motion__stairs_motion_bottom.attributes.temperature }}
-          \n \n
-          The NEST has been set to *{{ states.climate.living_room.attributes.operation_mode }}* with a target temperature of *{{  states.climate.living_room.attributes.temperature }}*, the away mode has been set to
-          *{{ states.climate.living_room.attributes.away_mode }}*
-          "
+  # - alias: 'Get the status of the current climate.'
+  #   hide_entity: true
+  #   trigger:
+  #     platform: event
+  #     event_type: telegram_command
+  #     event_data:
+  #       command: '/climate'
+  #   action:
+  #     - service: notify.jeeves
+  #       data_template:
+  #         message: "Hi Sir, 
+  #         \n  
+  #         The current temperature in your living room is: 
+  #         \n 
+  #         *Kitchenlight:* {{ states.climate.living_room.attributes.current_temperature }} 
+  #         \n
+  #         *Hall:* {{ states.sensor.hue_motion_stairs_motion_bottom.attributes.temperature }}
+  #         \n \n
+  #         The NEST has been set to *{{ states.climate.living_room.attributes.operation_mode }}* with a target temperature of *{{  states.climate.living_room.attributes.temperature }}*, the away mode has been set to
+  #         *{{ states.climate.living_room.attributes.away_mode }}*
+  #         "
 
 # Welcome people - group.joey_tracker	
   - alias: 'Welcome Joey home'
     trigger:
       - platform: state
-        entity_id: group.joey_tracker
+        entity_id: device_tracker.joey_bakxs_iphone
         to: 'home'
     condition:
       condition: and 
@@ -522,7 +525,7 @@
           after: '09:00'
           before: '23:59'
     action:
-      - service: notify.Jeeves
+      - service: notify.jeeves
         data:
           title: '*Joey is home*'
           message: "You've arrived home."
@@ -534,7 +537,7 @@
           message: "Welcome home, Joey!!"
           delay: 00:00:05
       - service: script.enable_shutter
-      - service: notify.Jeeves
+      - service: notify.jeeves
         data:
           title: '*Camera Shutter C6T - Enabled*'
           message: "*Camera Shutter C6T Livingroom has been enabled, privacy protected*"
@@ -543,7 +546,7 @@
   - alias: 'Welcome Marit home'
     trigger:
       - platform: state
-        entity_id: group.marit_tracker
+        entity_id: device_tracker.maritboonkiphone
         to: 'home'
     condition:
       condition: and 
@@ -553,7 +556,7 @@
           before: '23:59'
     action:
       - service: script.enable_shutter
-      - service: notify.Jeeves
+      - service: notify.jeeves
         data:
           title: '*Marit is home*'
           message: "Marit arrived home."
@@ -564,7 +567,7 @@
           volume: 0.2
           message: "Welcome home, Marit!!"
           delay: 00:00:05
-      - service: notify.Jeeves
+      - service: notify.jeeves
         data:
           title: '*Camera Shutter C6T - Enabled*'
           message: "*Camera Shutter C6T Livingroom has been enabled, privacy protected*"
